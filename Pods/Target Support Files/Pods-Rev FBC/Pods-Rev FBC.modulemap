@@ -1,0 +1,6 @@
+framework module Pods_Rev_FBC {
+  umbrella header "Pods-Rev FBC-umbrella.h"
+
+  export *
+  module * { export * }
+}

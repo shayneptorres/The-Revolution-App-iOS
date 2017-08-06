@@ -1,0 +1,6 @@
+framework module Pods_Rev_FBCTests {
+  umbrella header "Pods-Rev FBCTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

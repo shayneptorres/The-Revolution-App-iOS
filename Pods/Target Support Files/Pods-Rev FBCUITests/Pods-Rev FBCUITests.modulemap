@@ -1,0 +1,6 @@
+framework module Pods_Rev_FBCUITests {
+  umbrella header "Pods-Rev FBCUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,47 @@
+PODS:
+  - Alamofire (4.4.0)
+  - Realm (2.9.1):
+    - Realm/Headers (= 2.9.1)
+  - Realm/Headers (2.9.1)
+  - RealmSwift (2.9.1):
+    - Realm (= 2.9.1)
+  - SwiftDate (4.1.2)
+  - SwiftyTimer (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - SwiftDate
+  - SwiftyTimer
+
+EXTERNAL SOURCES:
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: 9e8c8ff62f6c6109ecd959b73b4e84f5fdad70ac
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: 9e8c8ff62f6c6109ecd959b73b4e84f5fdad70ac
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
+  RealmSwift: 9b93f053d46d4fc4145e691c14eb06b5410ffdc9
+  SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+
+PODFILE CHECKSUM: b075e6bd75f7a934a633856a96c1e793229817d6
+
+COCOAPODS: 1.2.0

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Rev FBC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Rev FBCTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Rev FBCUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftDate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0BC2E1832E5790D89FD1EA3198BC9457</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E26274C6A436DE15F14B7E1EA0220B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>975F323FF148866AC2DC424CC438E32C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BDA0EF36E6A7318ED4E0A9EE4783467</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C645B7534BDA0A82C12FDB66461CB887</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF747D2FBA342170F1BA2E28FD6EAA1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E380C2902B26C2348AD6A31E469A59E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
