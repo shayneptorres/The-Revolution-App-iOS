@@ -15,6 +15,12 @@ class UpcomingEventsVC: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            
+            tableView.estimatedRowHeight = 200
+            tableView.rowHeight = UITableViewAutomaticDimension
+            
+            let nib = UINib(nibName: "UpcomingEventCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: CellID.upcomingEvent.rawValue)
         }
     }
     
@@ -37,7 +43,11 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        var cell = UITableViewCell()
+        
+        let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
+        
+        return eventCell
     }
     
 }

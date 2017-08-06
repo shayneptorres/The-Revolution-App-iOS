@@ -17,6 +17,12 @@
 		B89C1BCA1F378D1D0099B567 /* UpcomingEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BC91F378D1D0099B567 /* UpcomingEventsVC.swift */; };
 		B89C1BCB1F378D1D0099B567 /* UpcomingEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BC91F378D1D0099B567 /* UpcomingEventsVC.swift */; };
 		B89C1BCD1F378D770099B567 /* UpcomingEventsVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BCC1F378D770099B567 /* UpcomingEventsVCTests.swift */; };
+		B89C1BD11F3790680099B567 /* UpcomingEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BCF1F3790680099B567 /* UpcomingEventCell.swift */; };
+		B89C1BD21F3790680099B567 /* UpcomingEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89C1BD01F3790680099B567 /* UpcomingEventCell.xib */; };
+		B89C1BD41F37908F0099B567 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BD31F37908F0099B567 /* Event.swift */; };
+		B89C1BD61F3790DD0099B567 /* RealmManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BD51F3790DD0099B567 /* RealmManagable.swift */; };
+		B89C1BD81F3791D60099B567 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BD71F3791D60099B567 /* Protocols.swift */; };
+		B89C1BDA1F3791F70099B567 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1BD91F3791F70099B567 /* Enums.swift */; };
 		B8BF09E31F36417900172662 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E21F36417900172662 /* Promise.swift */; };
 		B8BF09E51F36419000172662 /* PromiseExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E41F36419000172662 /* PromiseExtras.swift */; };
 		B8BF09E71F3644E600172662 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E61F3644E600172662 /* AppTabBarController.swift */; };
@@ -64,6 +70,12 @@
 		B8914E151F35ABBF00F51CBD /* Metropolis1920.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Metropolis1920.otf; sourceTree = "<group>"; };
 		B89C1BC91F378D1D0099B567 /* UpcomingEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventsVC.swift; sourceTree = "<group>"; };
 		B89C1BCC1F378D770099B567 /* UpcomingEventsVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventsVCTests.swift; sourceTree = "<group>"; };
+		B89C1BCF1F3790680099B567 /* UpcomingEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventCell.swift; sourceTree = "<group>"; };
+		B89C1BD01F3790680099B567 /* UpcomingEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpcomingEventCell.xib; sourceTree = "<group>"; };
+		B89C1BD31F37908F0099B567 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B89C1BD51F3790DD0099B567 /* RealmManagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManagable.swift; sourceTree = "<group>"; };
+		B89C1BD71F3791D60099B567 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		B89C1BD91F3791F70099B567 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		B8AC9FEFDF0D7BEF61D52944 /* Pods-Rev FBC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev FBC.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rev FBC/Pods-Rev FBC.release.xcconfig"; sourceTree = "<group>"; };
 		B8BF09E21F36417900172662 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		B8BF09E41F36419000172662 /* PromiseExtras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseExtras.swift; sourceTree = "<group>"; };
@@ -167,6 +179,8 @@
 		B8914E0E1F35A9DC00F51CBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B89C1BD31F37908F0099B567 /* Event.swift */,
+				B89C1BD51F3790DD0099B567 /* RealmManagable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +198,8 @@
 			children = (
 				B8BF09E21F36417900172662 /* Promise.swift */,
 				B8BF09E41F36419000172662 /* PromiseExtras.swift */,
+				B89C1BD71F3791D60099B567 /* Protocols.swift */,
+				B89C1BD91F3791F70099B567 /* Enums.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -222,9 +238,19 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		B89C1BCE1F37903C0099B567 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B89C1BCF1F3790680099B567 /* UpcomingEventCell.swift */,
+				B89C1BD01F3790680099B567 /* UpcomingEventCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B8A4E9A41F36491400A2DFE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B89C1BCE1F37903C0099B567 /* Cells */,
 				B89C1BC91F378D1D0099B567 /* UpcomingEventsVC.swift */,
 			);
 			path = Main;
@@ -374,6 +400,7 @@
 			files = (
 				B8914DEA1F35A97600F51CBD /* LaunchScreen.storyboard in Resources */,
 				B8914DE71F35A97600F51CBD /* Assets.xcassets in Resources */,
+				B89C1BD21F3790680099B567 /* UpcomingEventCell.xib in Resources */,
 				B8914DE51F35A97600F51CBD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,10 +564,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89C1BD61F3790DD0099B567 /* RealmManagable.swift in Sources */,
 				B8BF09E71F3644E600172662 /* AppTabBarController.swift in Sources */,
+				B89C1BDA1F3791F70099B567 /* Enums.swift in Sources */,
 				B8BF09E51F36419000172662 /* PromiseExtras.swift in Sources */,
+				B89C1BD81F3791D60099B567 /* Protocols.swift in Sources */,
 				B8914DE01F35A97600F51CBD /* AppDelegate.swift in Sources */,
 				B89C1BCA1F378D1D0099B567 /* UpcomingEventsVC.swift in Sources */,
+				B89C1BD11F3790680099B567 /* UpcomingEventCell.swift in Sources */,
+				B89C1BD41F37908F0099B567 /* Event.swift in Sources */,
 				B8BF09E31F36417900172662 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
