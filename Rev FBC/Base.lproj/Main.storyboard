@@ -76,7 +76,7 @@
         <!--Upcoming-->
         <scene sceneID="3yO-n4-kvb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4E-6w-9br" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4E-6w-9br" customClass="MenuNav" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Upcoming" id="5c7-ga-NNK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o15-gg-NKQ">
@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="1062" y="351"/>
         </scene>
-        <!--View Controller-->
+        <!--AddressVC-->
         <scene sceneID="tRm-tV-B7U">
             <objects>
-                <viewController id="tE2-jo-UbQ" sceneMemberID="viewController">
+                <viewController id="tE2-jo-UbQ" customClass="AddressVC" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GNZ-Tm-cQi"/>
                         <viewControllerLayoutGuide type="bottom" id="G3Z-8c-ndj"/>
@@ -181,9 +181,43 @@
                     <view key="view" contentMode="scaleToFill" id="ZtO-Jd-azq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RRI-7p-ubN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="267"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULj-TO-v34" customClass="AppButton" customModule="Rev_FBC" customModuleProvider="target">
+                                <rect key="frame" x="20" y="351" width="157.5" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kCC-ti-sZL"/>
+                                </constraints>
+                                <state key="normal" title="Get directions"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuP-Ze-yqm" customClass="AppButton" customModule="Rev_FBC" customModuleProvider="target">
+                                <rect key="frame" x="197.5" y="351" width="157.5" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="AlJ-zh-b48"/>
+                                </constraints>
+                                <state key="normal" title="Share address"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="RRI-7p-ubN" secondAttribute="trailing" id="1T3-ST-aPo"/>
+                            <constraint firstItem="nuP-Ze-yqm" firstAttribute="leading" secondItem="ULj-TO-v34" secondAttribute="trailing" constant="20" id="32i-oe-phG"/>
+                            <constraint firstItem="RRI-7p-ubN" firstAttribute="height" secondItem="ZtO-Jd-azq" secondAttribute="height" multiplier="0.4" id="5Dk-Sq-Jgq"/>
+                            <constraint firstAttribute="trailing" secondItem="nuP-Ze-yqm" secondAttribute="trailing" constant="20" id="BVE-wy-GRB"/>
+                            <constraint firstItem="nuP-Ze-yqm" firstAttribute="top" secondItem="RRI-7p-ubN" secondAttribute="bottom" constant="20" id="XpR-Jr-kIE"/>
+                            <constraint firstItem="ULj-TO-v34" firstAttribute="top" secondItem="RRI-7p-ubN" secondAttribute="bottom" constant="20" id="aFJ-TF-9Fn"/>
+                            <constraint firstItem="RRI-7p-ubN" firstAttribute="leading" secondItem="ZtO-Jd-azq" secondAttribute="leading" id="o8m-M2-pBM"/>
+                            <constraint firstItem="ULj-TO-v34" firstAttribute="width" secondItem="nuP-Ze-yqm" secondAttribute="width" id="rdt-PH-Aq3"/>
+                            <constraint firstItem="RRI-7p-ubN" firstAttribute="top" secondItem="GNZ-Tm-cQi" secondAttribute="bottom" id="sw0-rP-t9F"/>
+                            <constraint firstItem="ULj-TO-v34" firstAttribute="leading" secondItem="ZtO-Jd-azq" secondAttribute="leading" constant="20" id="z33-P6-m3O"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NfW-ME-ggu"/>
+                    <connections>
+                        <outlet property="mapView" destination="RRI-7p-ubN" id="HOT-mD-Gw8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8y6-sy-QFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

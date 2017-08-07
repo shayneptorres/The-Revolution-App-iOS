@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MenuVC-->
+        <scene sceneID="rg5-j9-0Wx">
+            <objects>
+                <viewController storyboardIdentifier="MenuVC" id="SLY-g8-Tjs" customClass="MenuVC" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dln-t9-xkB"/>
+                        <viewControllerLayoutGuide type="bottom" id="pdi-4E-4r1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rbd-I5-7ZC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YeC-ta-S7O">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="66" id="w3x-mz-JeZ" customClass="MenuCell" customModule="Rev_FBC" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3x-mz-JeZ" id="6SE-dj-757">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph2-jm-HM9">
+                                                    <rect key="frame" x="8" y="22" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ph2-jm-HM9" firstAttribute="centerY" secondItem="6SE-dj-757" secondAttribute="centerY" id="26I-eR-grE"/>
+                                                <constraint firstItem="ph2-jm-HM9" firstAttribute="leading" secondItem="6SE-dj-757" secondAttribute="leading" constant="8" id="7cl-Vo-b9J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemName" destination="ph2-jm-HM9" id="uya-Wc-UYe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YeC-ta-S7O" firstAttribute="leading" secondItem="rbd-I5-7ZC" secondAttribute="leading" id="8We-Nm-8Ct"/>
+                            <constraint firstItem="pdi-4E-4r1" firstAttribute="top" secondItem="YeC-ta-S7O" secondAttribute="bottom" id="Vbw-JW-8Py"/>
+                            <constraint firstAttribute="trailing" secondItem="YeC-ta-S7O" secondAttribute="trailing" id="YZf-2r-AJv"/>
+                            <constraint firstItem="YeC-ta-S7O" firstAttribute="top" secondItem="dln-t9-xkB" secondAttribute="bottom" id="tsG-dZ-aM4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="YeC-ta-S7O" id="MfU-CE-hRk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bb1-TP-cR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178.40000000000001" y="1.3493253373313345"/>
+        </scene>
+    </scenes>
+</document>

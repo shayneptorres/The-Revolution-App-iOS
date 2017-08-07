@@ -41,18 +41,27 @@
                             <constraint firstItem="FPO-rS-XcA" firstAttribute="centerX" secondItem="p9S-9y-p0u" secondAttribute="centerX" id="vSt-RE-FsR"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-a8-zo2">
-                        <rect key="frame" x="66" y="12" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-a8-zo2">
+                        <rect key="frame" x="66" y="12" width="84.5" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                         <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-YA-toP">
+                        <rect key="frame" x="74" y="38" width="109" height="20"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="TFO-a8-zo2" firstAttribute="top" secondItem="p9S-9y-p0u" secondAttribute="top" id="P2x-Nw-0lv"/>
                     <constraint firstItem="p9S-9y-p0u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Pat-OY-IMH"/>
+                    <constraint firstItem="YzC-YA-toP" firstAttribute="leading" secondItem="p9S-9y-p0u" secondAttribute="trailing" constant="16" id="RHN-xo-FGl"/>
+                    <constraint firstItem="YzC-YA-toP" firstAttribute="top" secondItem="TFO-a8-zo2" secondAttribute="bottom" constant="4" id="Rfp-QN-qTu"/>
                     <constraint firstAttribute="bottomMargin" secondItem="p9S-9y-p0u" secondAttribute="bottom" constant="4" id="iy5-Nl-ENT"/>
                     <constraint firstItem="p9S-9y-p0u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4.5" id="lyS-s6-lfB"/>
+                    <constraint firstItem="TFO-a8-zo2" firstAttribute="leading" secondItem="p9S-9y-p0u" secondAttribute="trailing" constant="8" id="qWJ-vk-bGK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

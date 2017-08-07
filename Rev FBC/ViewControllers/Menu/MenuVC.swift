@@ -1,5 +1,5 @@
 //
-//  UpcomingEventsVC.swift
+//  MenuVC.swift
 //  Rev FBC
 //
 //  Created by Shayne Torres on 8/6/17.
@@ -8,8 +8,16 @@
 
 import UIKit
 
-class UpcomingEventsVC: SlideableMenuVC {
+protocol SlideMenuDelegate {
+    func menuItemSelected(atIndex index: Int)
+}
+
+class MenuCell : UITableViewCell {
     
+    @IBOutlet weak var itemName: UILabel!
+}
+
+class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -19,35 +27,33 @@ class UpcomingEventsVC: SlideableMenuVC {
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableViewAutomaticDimension
             
-            let nib = UINib(nibName: "UpcomingEventCell", bundle: nil)
-            tableView.register(nib, forCellReuseIdentifier: CellID.upcomingEvent.rawValue)
+            tableView.backgroundColor = .red
         }
     }
     
+    var delegate : SlideMenuDelegate?
+    
+    var menuItems : [String] = ["Sign in"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
-    
-
-}
-
-extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return menuItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        
-        let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
-        
-        return eventCell
+        let menuCell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuCell
+        menuCell.itemName.text = menuItems[indexPath.row]
+        return menuCell
     }
-    
+
 }
+
