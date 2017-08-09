@@ -10,6 +10,13 @@ import UIKit
 
 class UpcomingEventCell: UITableViewCell {
     
+    
+    @IBOutlet weak var cardContainer: UIView! {
+        didSet {
+            cardContainer.applyShadow()
+        }
+    }
+    
     @IBOutlet weak var dateContainer: UIView! {
         didSet {
             dateContainer.layer.cornerRadius = dateContainer.bounds.height/2

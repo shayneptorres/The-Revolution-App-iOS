@@ -19,6 +19,9 @@ class UpcomingEventsVC: SlideableMenuVC {
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableViewAutomaticDimension
             
+            tableView.separatorStyle = .none
+            
+            
             let nib = UINib(nibName: "UpcomingEventCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: CellID.upcomingEvent.rawValue)
         }
