@@ -16,6 +16,8 @@ class Event : Object, RealmManagable {
     dynamic var desc = String()
     dynamic var createdAt = Date()
     dynamic var updatedAt = Date()
+    dynamic var startDate = Date()
+    dynamic var address = String()
     
     typealias RealmObject = Event
     
