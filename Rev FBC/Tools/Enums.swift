@@ -12,5 +12,6 @@ enum CellID : String {
     case upcomingEvent = "upcomingEvents"
     case locationCell = "locationCell"
     case locationActionCell = "locationActionCell"
+    case locationInfoCell = "locationInfoCell"
 }
 

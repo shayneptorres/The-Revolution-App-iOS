@@ -18,6 +18,8 @@
 		B85D99161F3D8CA8005A6A23 /* LocationActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D99141F3D8CA8005A6A23 /* LocationActionCell.swift */; };
 		B85D99171F3D8CA8005A6A23 /* LocationActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85D99151F3D8CA8005A6A23 /* LocationActionCell.xib */; };
 		B85D99191F3DA83A005A6A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85D99181F3DA83A005A6A23 /* Assets.xcassets */; };
+		B85D991C1F3DAB00005A6A23 /* LocationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D991A1F3DAB00005A6A23 /* LocationInfoCell.swift */; };
+		B85D991D1F3DAB00005A6A23 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85D991B1F3DAB00005A6A23 /* LocationInfoCell.xib */; };
 		B8914DE01F35A97600F51CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8914DDF1F35A97600F51CBD /* AppDelegate.swift */; };
 		B8914DE51F35A97600F51CBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8914DE31F35A97600F51CBD /* Main.storyboard */; };
 		B8914DEA1F35A97600F51CBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8914DE81F35A97600F51CBD /* LaunchScreen.storyboard */; };
@@ -77,6 +79,8 @@
 		B85D99141F3D8CA8005A6A23 /* LocationActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationActionCell.swift; sourceTree = "<group>"; };
 		B85D99151F3D8CA8005A6A23 /* LocationActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationActionCell.xib; sourceTree = "<group>"; };
 		B85D99181F3DA83A005A6A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B85D991A1F3DAB00005A6A23 /* LocationInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfoCell.swift; sourceTree = "<group>"; };
+		B85D991B1F3DAB00005A6A23 /* LocationInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationInfoCell.xib; sourceTree = "<group>"; };
 		B8914DDC1F35A97600F51CBD /* Rev FBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rev FBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8914DDF1F35A97600F51CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8914DE41F35A97600F51CBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				B85D990F1F3D8285005A6A23 /* LocationCell.xib */,
 				B85D99141F3D8CA8005A6A23 /* LocationActionCell.swift */,
 				B85D99151F3D8CA8005A6A23 /* LocationActionCell.xib */,
+				B85D991A1F3DAB00005A6A23 /* LocationInfoCell.swift */,
+				B85D991B1F3DAB00005A6A23 /* LocationInfoCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 			files = (
 				B85D99171F3D8CA8005A6A23 /* LocationActionCell.xib in Resources */,
 				B85D99111F3D8285005A6A23 /* LocationCell.xib in Resources */,
+				B85D991D1F3DAB00005A6A23 /* LocationInfoCell.xib in Resources */,
 				B82F4C1D1F37A69A0014D322 /* Menu.storyboard in Resources */,
 				B8914DEA1F35A97600F51CBD /* LaunchScreen.storyboard in Resources */,
 				B85D99191F3DA83A005A6A23 /* Assets.xcassets in Resources */,
@@ -636,6 +643,7 @@
 				B8260F9B1F398CAB00175CEA /* UIView.swift in Sources */,
 				B85D99131F3D8764005A6A23 /* Constants.swift in Sources */,
 				B85D99101F3D8285005A6A23 /* LocationCell.swift in Sources */,
+				B85D991C1F3DAB00005A6A23 /* LocationInfoCell.swift in Sources */,
 				B89C1BD11F3790680099B567 /* UpcomingEventCell.swift in Sources */,
 				B89C1BD41F37908F0099B567 /* Event.swift in Sources */,
 				B8BF09E31F36417900172662 /* Promise.swift in Sources */,

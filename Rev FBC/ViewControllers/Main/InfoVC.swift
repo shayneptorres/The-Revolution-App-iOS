@@ -26,6 +26,9 @@ class InfoVC: UIViewController {
             var nib = UINib(nibName: "LocationActionCell", bundle: nil)
             self.tableView.register(nib, forCellReuseIdentifier: CellID.locationActionCell.rawValue)
             
+            nib = UINib(nibName: "LocationInfoCell", bundle: nil)
+            self.tableView.register(nib, forCellReuseIdentifier: CellID.locationInfoCell.rawValue)
+            
             nib = UINib(nibName: "LocationCell", bundle: nil)
             self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.locationCell.rawValue)
         }
@@ -49,6 +52,7 @@ class InfoVC: UIViewController {
         let revolution = Event()
         revolution.name = "The Revolution"
         revolution.address = REV_FBC_ADDRESS
+        revolution.desc = "Come join us for a night of fun, games, singing praise, and teaching God's word."
         
         // create a wednesday
         var wednesday = Date().startOfDay
@@ -67,6 +71,7 @@ class InfoVC: UIViewController {
         let sundayFellowship = Event()
         sundayFellowship.name = "Sunday Morning Fellowship"
         sundayFellowship.address = FBC_ADDRESS
+        sundayFellowship.desc = "Join us as we meet with our whole church for a time of praise, teaching, and community. Stick around after for our high school meeting."
         
         // create a wednesday
         var sunday = Date().startOfDay
@@ -94,7 +99,7 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
             return 0
         } else {
             // if the section is not collapsed, show all the cells
-            return 1
+            return 2
         }
     }
     
@@ -103,10 +108,18 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
+            /// Location Action Cell
             let actionCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationActionCell.rawValue) as! LocationActionCell
             
             actionCell.event = events.first!
             cell = actionCell
+            
+        case 1:
+            /// Location Info Cell
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationInfoCell.rawValue) as! LocationInfoCell
+            
+            infoCell.info.text = events[indexPath.section].desc
+            cell = infoCell
         default:
             break
         }
