@@ -39,12 +39,13 @@ class InfoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createEvents()
+        createWednesdayNightEvent()
+        createSundayMorningEvent()
         tableView.reloadData()
         
     }
     
-    func createEvents(){
+    func createWednesdayNightEvent(){
         let revolution = Event()
         revolution.name = "The Revolution"
         revolution.address = REV_FBC_ADDRESS
@@ -61,6 +62,24 @@ class InfoVC: UIViewController {
         events.append(revolution)
         sections.append((name: revolution.name, collapsed: true))
     }
+    
+    func createSundayMorningEvent(){
+        let sundayFellowship = Event()
+        sundayFellowship.name = "Sunday Morning Fellowship"
+        sundayFellowship.address = FBC_ADDRESS
+        
+        // create a wednesday
+        var sunday = Date().startOfDay
+        while sunday.weekdayName != "Sunday" {
+            sunday = sunday + 1.day
+        }
+        sunday = sunday + 8.hours + 30.minutes
+        
+        sundayFellowship.startDate = sunday
+        
+        events.append(sundayFellowship)
+        sections.append((name: sundayFellowship.name, collapsed: true))
+    }
 
 }
 
@@ -70,24 +89,19 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            if sections[section].collapsed {
-                // if the section is collaped, then only show one cell
-                return 0
-            } else {
-                // if the section is not collapsed, show all the cells
-                return 1
-            }
-        default:
+        if sections[section].collapsed {
+            // if the section is collaped, then only show one cell
             return 0
+        } else {
+            // if the section is not collapsed, show all the cells
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
-        switch indexPath.section {
+        switch indexPath.row {
         case 0:
             let actionCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationActionCell.rawValue) as! LocationActionCell
             
@@ -104,7 +118,7 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let locationCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.locationCell.rawValue) as! LocationCell
 
-        locationCell.event = events.first!
+        locationCell.event = events[section]
         locationCell.section = section
         locationCell.delegate = self
         return locationCell

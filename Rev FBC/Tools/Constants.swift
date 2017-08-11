@@ -9,3 +9,5 @@
 import Foundation
 
 let REV_FBC_ADDRESS = "27464 Jefferson Ave, Temecula, CA 92590"
+
+let FBC_ADDRESS = "31650 Browning St, Murrieta, CA 92563"

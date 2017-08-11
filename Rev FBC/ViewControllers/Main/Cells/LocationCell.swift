@@ -55,7 +55,7 @@ class LocationCell: UITableViewHeaderFooterView, CoordinateManager {
         locationName.text = event.name
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE 'at' h:mm a"
+        formatter.dateFormat = "EEEE's' 'at' h:mm a"
         
         locationDate.text = formatter.string(from: event.startDate)
         eventImage.image = UIImage(named: "logo1")
