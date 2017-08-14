@@ -13,6 +13,9 @@ target 'Rev FBC' do
   pod 'SwiftDate'
   pod 'SwiftyTimer'
   pod 'Alamofire', '~> 4.4'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 
   target 'Rev FBCTests' do
     inherit! :search_paths

@@ -8,8 +8,11 @@
 
 import UIKit
 import SwiftDate
+import MapKit
+import CoreLocation
+import MessageUI
 
-class InfoVC: UIViewController {
+class InfoVC: UIViewController, CoordinateManager {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -28,6 +31,9 @@ class InfoVC: UIViewController {
             
             nib = UINib(nibName: "LocationInfoCell", bundle: nil)
             self.tableView.register(nib, forCellReuseIdentifier: CellID.locationInfoCell.rawValue)
+            
+            nib = UINib(nibName: "LocationMapCell", bundle: nil)
+            self.tableView.register(nib, forCellReuseIdentifier: CellID.locationMapCell.rawValue)
             
             nib = UINib(nibName: "LocationCell", bundle: nil)
             self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.locationCell.rawValue)
@@ -99,7 +105,7 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
             return 0
         } else {
             // if the section is not collapsed, show all the cells
-            return 2
+            return 3
         }
     }
     
@@ -107,14 +113,23 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
         var cell = UITableViewCell()
         
         switch indexPath.row {
+            
         case 0:
+            /// Location Info Cell
+            let mapCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationMapCell.rawValue) as! LocationMapCell
+            
+            mapCell.event = events[indexPath.section]
+            cell = mapCell
+            
+        case 1:
             /// Location Action Cell
             let actionCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationActionCell.rawValue) as! LocationActionCell
             
-            actionCell.event = events.first!
+            actionCell.event = events[indexPath.section]
+            actionCell.delegate = self
             cell = actionCell
             
-        case 1:
+        case 2:
             /// Location Info Cell
             let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationInfoCell.rawValue) as! LocationInfoCell
             
@@ -138,7 +153,7 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 175
+        return 75
     }
 }
 
@@ -158,14 +173,44 @@ extension InfoVC : LocationAddressCellDelegate {
     }
     
     func directions(event: Event) {
-        
+        getCoordinateFromAddress(address: event.address).then({ coordinate in
+            guard let coord = coordinate else { return }
+            
+            let coordinate = CLLocationCoordinate2DMake(coord.latitude , coord.longitude)
+            let region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.01, 0.02))
+            let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)]
+            mapItem.name = event.name
+            mapItem.openInMaps(launchOptions: options)
+        })
     }
     
     func sendAddress(event: Event) {
-        
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Address for \(event.name):\n\(event.address)"
+            controller.recipients = []
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Cannot send text", message: "It looks like your device cannot send messages at this time.", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            alert.addAction(dismissAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func website(event: Event) {
         
     }
+}
+
+extension InfoVC : MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,16 +33,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-YA-toP">
-                                <rect key="frame" x="90" y="29" width="109" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-YA-toP">
+                                <rect key="frame" x="82" y="29" width="109" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightChevron" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-XT-zx0">
+                                <rect key="frame" x="403" y="23" width="10" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="UdN-Dy-CTz"/>
+                                    <constraint firstAttribute="height" constant="19" id="hyz-nr-c9S"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YzC-YA-toP" firstAttribute="top" secondItem="TFO-a8-zo2" secondAttribute="bottom" constant="-1" id="Qz6-Tn-5HR"/>
+                            <constraint firstItem="8Of-XT-zx0" firstAttribute="centerY" secondItem="AGA-6t-c7Y" secondAttribute="centerY" id="Sdq-mw-UIW"/>
+                            <constraint firstItem="8Of-XT-zx0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="trailing" constant="10" id="XaM-5X-9JJ"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="bottom" constant="10" id="dIu-te-zra"/>
+                            <constraint firstAttribute="trailing" secondItem="8Of-XT-zx0" secondAttribute="trailing" constant="8" id="jFB-64-Nx4"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9S-9y-p0u">
@@ -68,20 +84,26 @@
                     <constraint firstAttribute="bottom" secondItem="AGA-6t-c7Y" secondAttribute="bottom" constant="4" id="0cl-UY-RM4"/>
                     <constraint firstItem="p9S-9y-p0u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="Pjg-sG-CxH"/>
                     <constraint firstItem="TFO-a8-zo2" firstAttribute="top" secondItem="FPO-rS-XcA" secondAttribute="top" id="ayQ-1z-PhV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="p9S-9y-p0u" secondAttribute="bottom" constant="3.5" id="c48-9q-rNi"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="p9S-9y-p0u" secondAttribute="bottom" constant="3.5" id="c48-9q-rNi"/>
                     <constraint firstAttribute="trailing" secondItem="AGA-6t-c7Y" secondAttribute="trailing" constant="8" id="czX-sz-Cuq"/>
                     <constraint firstItem="TFO-a8-zo2" firstAttribute="leading" secondItem="FPO-rS-XcA" secondAttribute="trailing" constant="16" id="gee-a8-Hix"/>
                     <constraint firstItem="AGA-6t-c7Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gyv-Q5-6lB"/>
                     <constraint firstItem="p9S-9y-p0u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="syY-Lf-vFn"/>
-                    <constraint firstItem="YzC-YA-toP" firstAttribute="leading" secondItem="FPO-rS-XcA" secondAttribute="trailing" constant="32" id="wlQ-hT-YzP"/>
+                    <constraint firstItem="YzC-YA-toP" firstAttribute="leading" secondItem="FPO-rS-XcA" secondAttribute="trailing" constant="24" id="wlQ-hT-YzP"/>
                     <constraint firstItem="AGA-6t-c7Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="x4J-1H-coM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cardContainer" destination="AGA-6t-c7Y" id="I9H-KP-nZ6"/>
+                <outlet property="date" destination="FPO-rS-XcA" id="u8n-pb-xpD"/>
                 <outlet property="dateContainer" destination="p9S-9y-p0u" id="zZo-IZ-6TR"/>
+                <outlet property="desc" destination="YzC-YA-toP" id="0FW-p7-teo"/>
+                <outlet property="name" destination="TFO-a8-zo2" id="h23-qk-l6x"/>
             </connections>
             <point key="canvasLocation" x="92.5" y="34"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="rightChevron" width="23" height="44"/>
+    </resources>
 </document>

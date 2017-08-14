@@ -27,13 +27,15 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableViewAutomaticDimension
             
-            tableView.backgroundColor = .red
+            tableView.separatorStyle = .none
+            
+            tableView.backgroundColor = .lightGray
         }
     }
     
     var delegate : SlideMenuDelegate?
     
-    var menuItems : [String] = ["Sign in"]
+    var menuItems : [String] = ["Admin sign-in"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

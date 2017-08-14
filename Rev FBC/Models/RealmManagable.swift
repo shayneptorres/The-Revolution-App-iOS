@@ -51,9 +51,9 @@ extension RealmManagable where Self : Object {
         }
     }
     
-    static func getAll() -> [RealmObject?] {
+    static func getAll() -> [RealmObject] {
         let realm = try! Realm()
-        return realm.objects(RealmObject.self as! Object.Type).map({ obj in obj as? RealmObject })
+        return realm.objects(RealmObject.self as! Object.Type).map({ obj in (obj as? RealmObject)! })
     }
     
     static func getOne(withId id: String) -> RealmObject? {

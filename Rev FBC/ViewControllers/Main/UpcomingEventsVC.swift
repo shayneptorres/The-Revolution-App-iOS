@@ -10,6 +10,7 @@ import UIKit
 
 class UpcomingEventsVC: SlideableMenuVC {
     
+    var events : [Event] = []
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -27,9 +28,23 @@ class UpcomingEventsVC: SlideableMenuVC {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FirebaseService.instance.loginGuest().then({ loginSuccess in
+            if loginSuccess {
+                FirebaseService.instance.getUpcomingEvents().then({ success in
+                    self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+                    self.tableView.reloadData()
+                })
+            }
+        })
     }
     
 
@@ -42,15 +57,18 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
         let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
+        eventCell.event = events[indexPath.row]
+        cell = eventCell
+        cell.selectionStyle = .none
         
-        return eventCell
+        return cell
     }
     
 }

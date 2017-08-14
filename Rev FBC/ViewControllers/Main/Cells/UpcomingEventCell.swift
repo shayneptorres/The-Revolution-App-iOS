@@ -10,6 +10,9 @@ import UIKit
 
 class UpcomingEventCell: UITableViewCell {
     
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var desc: UILabel!
+    @IBOutlet weak var date: UILabel!
     
     @IBOutlet weak var cardContainer: UIView! {
         didSet {
@@ -34,5 +37,18 @@ class UpcomingEventCell: UITableViewCell {
     
     func updateUI(_ event: Event){
         
+        let monthFormetter = DateFormatter()
+        monthFormetter.dateFormat = "MMM"
+        
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "dd"
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        
+        name.text = event.name
+        desc.text = "\(timeFormatter.string(from: event.startDate))\n\(event.desc)"
+        
+        date.text = "\(monthFormetter.string(from: event.startDate))\n\(dayFormatter.string(from: event.startDate))"
     }
 }

@@ -22,8 +22,6 @@ class LocationCell: UITableViewHeaderFooterView, CoordinateManager {
         }
     }
     
-    @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var eventImage: UIImageView!
     
     @IBOutlet weak var locationName: UILabel!
@@ -51,27 +49,19 @@ class LocationCell: UITableViewHeaderFooterView, CoordinateManager {
     }
     
     func updateUI(_ event: Event){
-        findLocation(forEvent: event)
+        
         locationName.text = event.name
         
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE's' 'at' h:mm a"
         
         locationDate.text = formatter.string(from: event.startDate)
-        eventImage.image = UIImage(named: "logo1")
-    }
-    
-    func findLocation(forEvent event: Event){
-        let locationAnnotation = MKPointAnnotation()
         
-        getCoordinateFromAddress(address: event.address).then({ coordinate in
-            guard let coord = coordinate else { return }
-            
-            locationAnnotation.coordinate = coord
-            locationAnnotation.title = event.name
-            self.mapView.addAnnotation(locationAnnotation)
-            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-        })
+        if event.name == "The Revolution" {
+            eventImage.image = UIImage(named: "logo1")
+        } else {
+            eventImage.image = UIImage(named: "fbcIcon")
+        }
     }
     
 }

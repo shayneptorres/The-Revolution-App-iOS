@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,10 +24,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZ6-3N-ZR9">
-                        <rect key="frame" x="4" y="0.0" width="312" height="39.5"/>
+                        <rect key="frame" x="8" y="0.0" width="304" height="39.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKg-UL-d7T">
-                                <rect key="frame" x="16" y="4" width="288" height="22"/>
+                                <rect key="frame" x="16" y="4" width="280" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -40,8 +45,8 @@
                 <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="kZ6-3N-ZR9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Dvv-Zm-r6r"/>
-                    <constraint firstAttribute="trailing" secondItem="kZ6-3N-ZR9" secondAttribute="trailing" constant="4" id="H2x-lD-rBD"/>
-                    <constraint firstItem="kZ6-3N-ZR9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="PH1-z7-IEW"/>
+                    <constraint firstAttribute="trailing" secondItem="kZ6-3N-ZR9" secondAttribute="trailing" constant="8" id="H2x-lD-rBD"/>
+                    <constraint firstItem="kZ6-3N-ZR9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="PH1-z7-IEW"/>
                     <constraint firstAttribute="bottom" secondItem="kZ6-3N-ZR9" secondAttribute="bottom" constant="4" id="YW8-Zh-eC0"/>
                 </constraints>
             </tableViewCellContentView>
