@@ -12,7 +12,7 @@ import MapKit
 import CoreLocation
 import MessageUI
 
-class InfoVC: UIViewController, CoordinateManager {
+class InfoVC: UIViewController, LocationManager {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -170,22 +170,6 @@ extension InfoVC : LocationCellDelegate {
 extension InfoVC : LocationAddressCellDelegate {
     func contact(event: Event) {
         
-    }
-    
-    func directions(event: Event) {
-        getCoordinateFromAddress(address: event.address).then({ coordinate in
-            guard let coord = coordinate else { return }
-            
-            let coordinate = CLLocationCoordinate2DMake(coord.latitude , coord.longitude)
-            let region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.01, 0.02))
-            let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            let options = [
-                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
-                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)]
-            mapItem.name = event.name
-            mapItem.openInMaps(launchOptions: options)
-        })
     }
     
     func sendAddress(event: Event) {

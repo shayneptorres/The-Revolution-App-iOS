@@ -13,6 +13,7 @@ class UpcomingEventCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var time: UILabel!
     
     @IBOutlet weak var cardContainer: UIView! {
         didSet {
@@ -47,8 +48,9 @@ class UpcomingEventCell: UITableViewCell {
         timeFormatter.dateFormat = "h:mm a"
         
         name.text = event.name
-        desc.text = "\(timeFormatter.string(from: event.startDate))\n\(event.desc)"
+        desc.text = "\(event.desc)"
         
         date.text = "\(monthFormetter.string(from: event.startDate))\n\(dayFormatter.string(from: event.startDate))"
+        time.text = timeFormatter.string(from: event.startDate)
     }
 }

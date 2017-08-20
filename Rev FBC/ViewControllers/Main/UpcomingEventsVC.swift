@@ -11,6 +11,8 @@ import UIKit
 class UpcomingEventsVC: SlideableMenuVC {
     
     var events : [Event] = []
+    var selectedEvent: Event?
+    var observer : EventObserver?
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -28,28 +30,59 @@ class UpcomingEventsVC: SlideableMenuVC {
         }
     }
     
+    @IBOutlet weak var addEventBtn: UIBarButtonItem! {
+        didSet {
+            addEventBtn.tintColor = UIColor(netHex: 0xF0C930)
+        }
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
         tableView.reloadData()
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         FirebaseService.instance.loginGuest().then({ loginSuccess in
             if loginSuccess {
                 FirebaseService.instance.getUpcomingEvents().then({ success in
-                    self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-                    self.tableView.reloadData()
+                    self.resetEvents()
                 })
             }
         })
+        
+        /// Start observing upcoming events
+        observer = EventObserver(tableView: tableView, events: events)
+    }
+    
+    func resetEvents(){
+        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+        self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func addEvent(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "AddEvent", sender: self)
     }
     
 
 }
 
+// MARK: - Navigation
+extension UpcomingEventsVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EventDetail" {
+            guard let detailVC = segue.destination as? UpcomingEventDetailVC else { return }
+            detailVC.event = selectedEvent
+        } else if segue.identifier == "AddEvent" {
+        
+        }
+    }
+}
+
+// MARK: - TableView Delegate/Datasource
 extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +90,7 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
         return events.count
     }
     
@@ -69,6 +103,11 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedEvent = events[indexPath.row]
+        performSegue(withIdentifier: "EventDetail", sender: self)
     }
     
 }

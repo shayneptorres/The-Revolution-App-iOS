@@ -9,12 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Eureka.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,22 +67,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A553829CC47E4B2B4262044940BC6B5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55E1D67527C2C067B4A7280E1980F896</key>
+		<key>2A4448146C785C426971111F117D773C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5ECD839164FC2BB016EE9D1915B5BF57</key>
+		<key>3F58B6A861D19A1190D598B4DC55D46D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>675A114988AE198732ED4AD726408964</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +92,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>886997C088F99576E3A3A388B3A5067C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>952B25503745AA45E1E0E9F4034DFD58</key>
+		<key>8AFA775FD5DDFC2B8A8E49E7238F9CBD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92C1156CAF20A3346EB9CE9D2017BB1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A76D6CEDB4EFE5E70C8DF444C8E5D385</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -98,11 +123,6 @@
 			<true/>
 		</dict>
 		<key>C645B7534BDA0A82C12FDB66461CB887</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DE2FB603042FA054A7A854173C0FF8C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

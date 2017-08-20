@@ -10,30 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationMapCell: UITableViewCell, CoordinateManager {
+class LocationMapCell: UITableViewCell, MapViewManager, LocationManager {
 
     @IBOutlet weak var mapView: MKMapView!
     
     var event : Event? {
         didSet {
             guard let event = event else { return }
-            findLocation(event: event)
+            findLocation(event: event, onMap: mapView)
         }
-    }
-
-    
-    func findLocation(event: Event){
-        
-        let locationAnnotation = MKPointAnnotation()
-        
-        getCoordinateFromAddress(address: event.address).then({ coordinate in
-            guard let coord = coordinate else { return }
-            
-            locationAnnotation.coordinate = coord
-            locationAnnotation.title = event.name
-            self.mapView.addAnnotation(locationAnnotation)
-            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-        })
     }
     
 }

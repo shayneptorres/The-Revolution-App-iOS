@@ -17,15 +17,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="KGk-i7-Jjw" customClass="UpcomingEventCell" customModule="Rev_FBC" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="437" height="74"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="97" id="KGk-i7-Jjw" customClass="UpcomingEventCell" customModule="Rev_FBC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="437" height="87"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="437" height="73.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="437" height="86.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGA-6t-c7Y">
-                        <rect key="frame" x="8" y="4" width="421" height="65.5"/>
+                        <rect key="frame" x="8" y="4" width="421" height="78.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-a8-zo2">
                                 <rect key="frame" x="74" y="8" width="84.5" height="22"/>
@@ -33,27 +33,45 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-YA-toP">
-                                <rect key="frame" x="82" y="29" width="109" height="20"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightChevron" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-XT-zx0">
-                                <rect key="frame" x="403" y="23" width="10" height="19"/>
+                                <rect key="frame" x="403" y="29.5" width="10" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="10" id="UdN-Dy-CTz"/>
                                     <constraint firstAttribute="height" constant="19" id="hyz-nr-c9S"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-PL-1dc">
+                                <rect key="frame" x="94" y="29" width="32" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VZ6-Iy-odz">
+                                <rect key="frame" x="74" y="30" width="16" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="5uT-9c-mn8"/>
+                                    <constraint firstAttribute="width" constant="16" id="pca-0l-cCX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-YA-toP">
+                                <rect key="frame" x="74" y="50" width="109" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YzC-YA-toP" firstAttribute="top" secondItem="TFO-a8-zo2" secondAttribute="bottom" constant="-1" id="Qz6-Tn-5HR"/>
+                            <constraint firstItem="OQP-PL-1dc" firstAttribute="centerY" secondItem="VZ6-Iy-odz" secondAttribute="centerY" id="0j6-es-x21"/>
+                            <constraint firstItem="VZ6-Iy-odz" firstAttribute="top" secondItem="TFO-a8-zo2" secondAttribute="bottom" id="1EF-Ys-q4c"/>
+                            <constraint firstItem="8Of-XT-zx0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="trailing" constant="10" id="Bd2-AO-Lom"/>
+                            <constraint firstItem="YzC-YA-toP" firstAttribute="leading" secondItem="VZ6-Iy-odz" secondAttribute="leading" id="LC4-5b-1wl"/>
+                            <constraint firstItem="OQP-PL-1dc" firstAttribute="leading" secondItem="VZ6-Iy-odz" secondAttribute="trailing" constant="4" id="LJ6-ct-uIf"/>
+                            <constraint firstItem="YzC-YA-toP" firstAttribute="top" secondItem="OQP-PL-1dc" secondAttribute="bottom" constant="1" id="PbY-ap-V8H"/>
                             <constraint firstItem="8Of-XT-zx0" firstAttribute="centerY" secondItem="AGA-6t-c7Y" secondAttribute="centerY" id="Sdq-mw-UIW"/>
-                            <constraint firstItem="8Of-XT-zx0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="trailing" constant="10" id="XaM-5X-9JJ"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="bottom" constant="10" id="dIu-te-zra"/>
+                            <constraint firstItem="VZ6-Iy-odz" firstAttribute="leading" secondItem="TFO-a8-zo2" secondAttribute="leading" id="ZK2-2c-141"/>
                             <constraint firstAttribute="trailing" secondItem="8Of-XT-zx0" secondAttribute="trailing" constant="8" id="jFB-64-Nx4"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YzC-YA-toP" secondAttribute="bottom" constant="8.5" id="pN0-de-wL5"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9S-9y-p0u">
@@ -89,7 +107,6 @@
                     <constraint firstItem="TFO-a8-zo2" firstAttribute="leading" secondItem="FPO-rS-XcA" secondAttribute="trailing" constant="16" id="gee-a8-Hix"/>
                     <constraint firstItem="AGA-6t-c7Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gyv-Q5-6lB"/>
                     <constraint firstItem="p9S-9y-p0u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="syY-Lf-vFn"/>
-                    <constraint firstItem="YzC-YA-toP" firstAttribute="leading" secondItem="FPO-rS-XcA" secondAttribute="trailing" constant="24" id="wlQ-hT-YzP"/>
                     <constraint firstItem="AGA-6t-c7Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="x4J-1H-coM"/>
                 </constraints>
             </tableViewCellContentView>
@@ -97,13 +114,15 @@
                 <outlet property="cardContainer" destination="AGA-6t-c7Y" id="I9H-KP-nZ6"/>
                 <outlet property="date" destination="FPO-rS-XcA" id="u8n-pb-xpD"/>
                 <outlet property="dateContainer" destination="p9S-9y-p0u" id="zZo-IZ-6TR"/>
-                <outlet property="desc" destination="YzC-YA-toP" id="0FW-p7-teo"/>
+                <outlet property="desc" destination="YzC-YA-toP" id="jh7-1F-pss"/>
                 <outlet property="name" destination="TFO-a8-zo2" id="h23-qk-l6x"/>
+                <outlet property="time" destination="OQP-PL-1dc" id="XuF-YM-oxo"/>
             </connections>
-            <point key="canvasLocation" x="92.5" y="34"/>
+            <point key="canvasLocation" x="92.5" y="40.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="rightChevron" width="23" height="44"/>
+        <image name="timeIcon" width="50" height="58"/>
     </resources>
 </document>

@@ -14,5 +14,6 @@ enum CellID : String {
     case locationActionCell = "locationActionCell"
     case locationInfoCell = "locationInfoCell"
     case locationMapCell = "locationMapCell"
+    case formCell = "formCell"
 }
 

@@ -16,6 +16,8 @@ target 'Rev FBC' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'JVFloatLabeledTextField'
+  pod 'Eureka'
 
   target 'Rev FBCTests' do
     inherit! :search_paths

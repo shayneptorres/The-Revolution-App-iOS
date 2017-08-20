@@ -43,7 +43,7 @@ class FirebaseService {
         var idsToKeep : [String] = []
         
             return Promise<Bool>(work: { fulfill, reject in
-                ref.child("upcomingEvents").observe(.value, with: { (snap) in
+                ref.child("upcomingEvents").observeSingleEvent(of: .value, with: { (snap) in
                     guard let snapDicts = snap.value as? NSDictionary else { return }
                     
                     snapDicts.forEach({ snapDict in
@@ -85,7 +85,72 @@ class FirebaseService {
                     fulfill(true)
             })
         })
+    }
+    
+    func observeEventChanges(completion: @escaping () -> ()) {
         
+        let ref = Database.database().reference()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-d-yyyy h:mma"
+        var idsToKeep : [String] = []
+        
+        ref.child("upcomingEvents").observe(.value, with: { (snap) in
+            guard let snapDicts = snap.value as? NSDictionary else { return }
+            
+            snapDicts.forEach({ snapDict in
+                let eventDict = snapDict.value as! NSDictionary
+                if
+                    let key = snapDict.key as? String,
+                    let name = eventDict["name"] as? String,
+                    let desc = eventDict["desc"] as? String,
+                    let address = eventDict["address"] as? String,
+                    let dateStr = eventDict["startDate"] as? String {
+                    
+                    idsToKeep.append(key)
+                    
+                    /// If we already have this event saved then update the event
+                    var e = Event.getAll().filter({ $0.id == key }).first
+                    if e != nil {
+                        e?.update {
+                            e?.name = name
+                            e?.desc = desc
+                            e?.address = address
+                            e?.startDate = dateFormatter.date(from: dateStr)!
+                        }
+                    } else {
+                        /// Else create a new event and save it
+                        var event = Event()
+                        event.id = key
+                        event.name = name
+                        event.desc = desc
+                        event.address = address
+                        event.startDate = dateFormatter.date(from: dateStr)!
+                        event.save()
+                        
+                    }
+                } else {
+                }
+            })
+            self.deleteOldEvents(ids: idsToKeep)
+            idsToKeep.removeAll()
+            completion()
+        })
+    }
+    
+    func addEvent(event: Event) {
+        let ref = Database.database().reference()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-d-yyyy h:mma"
+        
+        let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
+                                        "address":event.address as NSString,
+                                        "desc":event.desc as NSString,
+                                        "startDate":dateFormatter.string(from: event.startDate) as NSString
+                                        ]
+        let key = ref.child("upcomingEvents").childByAutoId().key as NSString
+        let dict : Dictionary<NSString,Any> = [key:eventDict]
+        
+        ref.child("upcomingEvents/\(key)").setValue(eventDict)
         
     }
 }

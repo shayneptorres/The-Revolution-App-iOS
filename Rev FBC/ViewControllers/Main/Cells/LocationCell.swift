@@ -14,7 +14,7 @@ protocol LocationCellDelegate {
     func handleTap(section: Int)
 }
 
-class LocationCell: UITableViewHeaderFooterView, CoordinateManager {
+class LocationCell: UITableViewHeaderFooterView, LocationManager {
     
     @IBOutlet weak var container: UIView! {
         didSet {
