@@ -41,6 +41,9 @@ PODS:
   - Realm/Headers (2.9.1)
   - RealmSwift (2.9.1):
     - Realm (= 2.9.1)
+  - RxCocoa (3.4.1):
+    - RxSwift (~> 3.4)
+  - RxSwift (3.4.1)
   - SwiftDate (4.1.2)
   - SwiftyTimer (2.0.0)
 
@@ -53,6 +56,8 @@ DEPENDENCIES:
   - JVFloatLabeledTextField
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
   - SwiftDate
   - SwiftyTimer
 
@@ -90,9 +95,11 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
   RealmSwift: 9b93f053d46d4fc4145e691c14eb06b5410ffdc9
+  RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
+  RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: cf158099d85d47c69b82e58c5b13b84974b0fa2b
+PODFILE CHECKSUM: 59c953df044d216dc15169d082b9d49d6743f150
 
 COCOAPODS: 1.2.0
