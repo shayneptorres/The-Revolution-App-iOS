@@ -34,7 +34,7 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
         eventNameLabel.text = event.name
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMMM dd, yyyy 'at' h:mm a"
+        formatter.dateFormat = "EEE, MMM dd 'at' h:mm a"
         
         timeLabel.text = formatter.string(from: event.startDate)
         addressLabel.text = event.address
@@ -57,6 +57,23 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     @IBAction func getDirections(_ sender: UIButton) {
         guard let event = event else { return }
         directions(event: event)
+    }
+    
+    @IBAction func deleteEvent(_ sender: UIButton) {
+        guard let event = event else { return }
+        FirebaseService.instance.deleteEvent(event: event)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func editEvent(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "EditEvent", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditEvent" {
+            let addEventVC = segue.destination as! AddEventVC
+            addEventVC.event = self.event
+        }
     }
 
 

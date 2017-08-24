@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S3Q-i4-04M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1784.8" y="-1815.7421289355323"/>
+            <point key="canvasLocation" x="2143" y="-1814"/>
         </scene>
         <!--Upcoming-->
         <scene sceneID="tne-QT-ifu">
@@ -204,6 +205,19 @@
                                     <constraint firstItem="0ZP-ww-5h3" firstAttribute="top" secondItem="epf-Fn-BTV" secondAttribute="bottom" constant="8" id="y3H-7u-6QS"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgG-Fm-nkj">
+                                <rect key="frame" x="16" y="603" width="343" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.13725490200000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bGy-Ru-p9G"/>
+                                </constraints>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteEvent:" destination="mcf-rd-ls6" eventType="touchUpInside" id="ylf-P4-4Xy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -211,12 +225,23 @@
                             <constraint firstItem="bEf-bo-RcC" firstAttribute="height" secondItem="eWC-C2-yKP" secondAttribute="height" multiplier="0.25" id="2jv-1l-t0Y"/>
                             <constraint firstItem="oaB-Lc-BMh" firstAttribute="height" secondItem="eWC-C2-yKP" secondAttribute="height" multiplier="0.5" priority="750" id="APj-4Y-Hkn"/>
                             <constraint firstItem="oaB-Lc-BMh" firstAttribute="leading" secondItem="eWC-C2-yKP" secondAttribute="leading" constant="20" id="EBe-My-DvJ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="IgG-Fm-nkj" secondAttribute="bottom" constant="20" id="LFw-Wq-aoH"/>
                             <constraint firstAttribute="trailing" secondItem="bEf-bo-RcC" secondAttribute="trailing" id="NJC-yV-j6N"/>
                             <constraint firstItem="oaB-Lc-BMh" firstAttribute="top" secondItem="bEf-bo-RcC" secondAttribute="bottom" constant="-20" id="P2U-N2-gq2"/>
                             <constraint firstAttribute="trailing" secondItem="oaB-Lc-BMh" secondAttribute="trailing" constant="20" id="cVa-6c-VIQ"/>
+                            <constraint firstItem="IgG-Fm-nkj" firstAttribute="leading" secondItem="eWC-C2-yKP" secondAttribute="leadingMargin" id="etP-VC-cl5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IgG-Fm-nkj" secondAttribute="trailing" id="ts8-qK-hQ6"/>
                             <constraint firstItem="bEf-bo-RcC" firstAttribute="leading" secondItem="eWC-C2-yKP" secondAttribute="leading" id="xU0-zI-9xg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="clx-Kx-2Xl">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="58v-xt-Tiq">
+                            <color key="tintColor" red="0.94155591726303101" green="0.78953391313552856" blue="0.18825846910476685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editEvent:" destination="mcf-rd-ls6" id="MiD-Ml-Sni"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="aAh-7S-kAM" id="jXe-95-8lu"/>
                         <outlet property="container" destination="oaB-Lc-BMh" id="RYb-VR-Vdp"/>
@@ -224,6 +249,7 @@
                         <outlet property="infoLabel" destination="wDn-1g-wfu" id="B4V-xh-P9L"/>
                         <outlet property="mapView" destination="bEf-bo-RcC" id="Bw4-7v-LIF"/>
                         <outlet property="timeLabel" destination="j1c-xo-1Eb" id="9RV-kK-I4y"/>
+                        <segue destination="t4o-9d-LEE" kind="show" identifier="EditEvent" id="dz4-A5-7Qo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8f-Yv-fRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -497,4 +523,7 @@
         <image name="addEventIcon" width="37" height="34"/>
         <image name="logoDarkCircle" width="550" height="550"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dz4-A5-7Qo"/>
+    </inferredMetricsTieBreakers>
 </document>

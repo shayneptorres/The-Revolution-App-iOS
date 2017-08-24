@@ -13,6 +13,8 @@
 		B8260F991F398A4400175CEA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8260F981F398A4400175CEA /* Colors.swift */; };
 		B8260F9B1F398CAB00175CEA /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8260F9A1F398CAB00175CEA /* UIView.swift */; };
 		B82F4C1D1F37A69A0014D322 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82F4C1C1F37A69A0014D322 /* Menu.storyboard */; };
+		B8436B9A1F4E5956005E0275 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8436B991F4E5956005E0275 /* Admin.storyboard */; };
+		B8436B9C1F4E5976005E0275 /* AdminLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */; };
 		B85D990D1F3BD7AA005A6A23 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D990C1F3BD7AA005A6A23 /* InfoVC.swift */; };
 		B85D99101F3D8285005A6A23 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D990E1F3D8285005A6A23 /* LocationCell.swift */; };
 		B85D99111F3D8285005A6A23 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85D990F1F3D8285005A6A23 /* LocationCell.xib */; };
@@ -84,6 +86,8 @@
 		B8260F9A1F398CAB00175CEA /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B82F4C1C1F37A69A0014D322 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		B82F4C1F1F37ABAC0014D322 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		B8436B991F4E5956005E0275 /* Admin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminLoginVC.swift; sourceTree = "<group>"; };
 		B85D990C1F3BD7AA005A6A23 /* InfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		B85D990E1F3D8285005A6A23 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		B85D990F1F3D8285005A6A23 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
@@ -175,6 +179,14 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
+		B8436B981F4E5942005E0275 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */,
+			);
+			name = Admin;
+			sourceTree = "<group>";
+		};
 		B8914DD31F35A97600F51CBD = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +245,7 @@
 		B8914E0D1F35A9CF00F51CBD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B8436B981F4E5942005E0275 /* Admin */,
 				B82F4C1E1F37AB7C0014D322 /* Menu */,
 				B8A4E9A41F36491400A2DFE2 /* Main */,
 			);
@@ -299,6 +312,7 @@
 				B8914DE31F35A97600F51CBD /* Main.storyboard */,
 				B8914DE81F35A97600F51CBD /* LaunchScreen.storyboard */,
 				B82F4C1C1F37A69A0014D322 /* Menu.storyboard */,
+				B8436B991F4E5956005E0275 /* Admin.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -489,6 +503,7 @@
 				B85D99111F3D8285005A6A23 /* LocationCell.xib in Resources */,
 				B85D991D1F3DAB00005A6A23 /* LocationInfoCell.xib in Resources */,
 				B82F4C1D1F37A69A0014D322 /* Menu.storyboard in Resources */,
+				B8436B9A1F4E5956005E0275 /* Admin.storyboard in Resources */,
 				B8914DEA1F35A97600F51CBD /* LaunchScreen.storyboard in Resources */,
 				B821415F1F3E9F9F0095758C /* LocationMapCell.xib in Resources */,
 				B85D99191F3DA83A005A6A23 /* Assets.xcassets in Resources */,
@@ -672,6 +687,7 @@
 				B8EF1BD81F383EDA0071BC20 /* SlideableMenuVC.swift in Sources */,
 				B889F70A1F4176F2006DB561 /* FirebaseService.swift in Sources */,
 				B8914DE01F35A97600F51CBD /* AppDelegate.swift in Sources */,
+				B8436B9C1F4E5976005E0275 /* AdminLoginVC.swift in Sources */,
 				B887CC531F42825A009EECAD /* UpcomingEventDetailVC.swift in Sources */,
 				B8260F991F398A4400175CEA /* Colors.swift in Sources */,
 				B85D99161F3D8CA8005A6A23 /* LocationActionCell.swift in Sources */,

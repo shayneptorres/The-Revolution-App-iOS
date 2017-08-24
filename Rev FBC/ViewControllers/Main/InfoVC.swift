@@ -169,7 +169,10 @@ extension InfoVC : LocationCellDelegate {
 
 extension InfoVC : LocationAddressCellDelegate {
     func contact(event: Event) {
-        
+        let email = "morgan@faith-bible.net"
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.open(url)
+        }
     }
     
     func sendAddress(event: Event) {
@@ -188,7 +191,15 @@ extension InfoVC : LocationAddressCellDelegate {
     }
     
     func website(event: Event) {
-        
+        var webSite = ""
+        if event.name == "The Revolution" {
+            webSite = "http://www.revfbc.net/"
+        } else {
+            webSite = "https://www.faith-bible.net/"
+        }
+        if let url = URL(string: webSite) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 }
 

@@ -11,7 +11,16 @@ import Eureka
 import SwiftDate
 
 class AddEventVC: FormViewController {
-
+    
+    var event : Event?
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        event = nil
+    }
+    
+    deinit {
+        event = nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,27 +30,32 @@ class AddEventVC: FormViewController {
             <<< TextRow() { row in
                 row.title = "Name:"
                 row.tag = "name"
+                row.value = event?.name
                 
             }
             <<< TextAreaRow() { row in
                 row.placeholder = "Info:"
                 row.tag = "info"
+                row.value = event?.desc
             }
             
         +++ Section("Where")
             <<< TextAreaRow() { row in
                 row.placeholder = "Address:"
                 row.tag = "address"
+                row.value = event?.address
             }
             
         +++ Section("When")
             <<< DateRow() { row in
                 row.title = "Date:"
                 row.tag = "date"
+                row.value = event?.startDate
             }
             <<< TimeRow() { row in
                 row.title = "Starts:"
                 row.tag = "startTime"
+                row.value = event?.startDate
             }
         
         +++ Section("")
@@ -62,7 +76,7 @@ class AddEventVC: FormViewController {
                     let startTime = startRow.value
                 else { return }
                 
-                var startDate = date.startOfDay - 7.hours
+                var startDate = date.startOfDay
                 startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
                 print(startDate)
                 
@@ -72,7 +86,13 @@ class AddEventVC: FormViewController {
                 event.address = address
                 event.startDate = startDate
                 
-                FirebaseService.instance.addEvent(event: event)
+                if self.event != nil {
+                    event.id = (self.event?.id)!
+                    FirebaseService.instance.updateEvent(event: event)
+                } else {
+                    FirebaseService.instance.addEvent(event: event)
+                }
+                
                 self.navigationController?.popViewController(animated: true)
             }
     }

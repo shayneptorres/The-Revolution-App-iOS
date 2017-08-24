@@ -18,6 +18,8 @@ target 'Rev FBC' do
   pod 'Firebase/Auth'
   pod 'JVFloatLabeledTextField'
   pod 'Eureka'
+  pod 'RxSwift',    '~> 3.0'
+  pod 'RxCocoa',    '~> 3.0'
 
   target 'Rev FBCTests' do
     inherit! :search_paths

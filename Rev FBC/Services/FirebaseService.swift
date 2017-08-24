@@ -44,7 +44,10 @@ class FirebaseService {
         
             return Promise<Bool>(work: { fulfill, reject in
                 ref.child("upcomingEvents").observeSingleEvent(of: .value, with: { (snap) in
-                    guard let snapDicts = snap.value as? NSDictionary else { return }
+                    guard let snapDicts = snap.value as? NSDictionary else {
+                        Event.getAll().forEach({ $0.delete() })
+                        return
+                    }
                     
                     snapDicts.forEach({ snapDict in
                         let eventDict = snapDict.value as! NSDictionary
@@ -95,9 +98,15 @@ class FirebaseService {
         var idsToKeep : [String] = []
         
         ref.child("upcomingEvents").observe(.value, with: { (snap) in
-            guard let snapDicts = snap.value as? NSDictionary else { return }
-            
+            guard let snapDicts = snap.value as? NSDictionary else {
+                Event.getAll().forEach({ $0.delete() })
+                return
+            }
+            print("SNAPS: ",snapDicts)
             snapDicts.forEach({ snapDict in
+                
+                
+                
                 let eventDict = snapDict.value as! NSDictionary
                 if
                     let key = snapDict.key as? String,
@@ -140,17 +149,39 @@ class FirebaseService {
     func addEvent(event: Event) {
         let ref = Database.database().reference()
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "MM-d-yyyy h:mma"
-        
+
         let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
                                         "address":event.address as NSString,
                                         "desc":event.desc as NSString,
                                         "startDate":dateFormatter.string(from: event.startDate) as NSString
                                         ]
         let key = ref.child("upcomingEvents").childByAutoId().key as NSString
-        let dict : Dictionary<NSString,Any> = [key:eventDict]
         
         ref.child("upcomingEvents/\(key)").setValue(eventDict)
         
+    }
+    
+    func deleteEvent(event: Event){
+        let ref = Database.database().reference()
+        ref.child("upcomingEvents/\(event.id)").removeValue()
+    }
+    
+    func updateEvent(event: Event){
+        let ref = Database.database().reference()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "MM-d-yyyy h:mma"
+        let key = ref.child("upcomingEvents").childByAutoId().key as NSString
+        
+        
+        let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
+                                                  "address":event.address as NSString,
+                                                  "desc":event.desc as NSString,
+                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString
+        ]
+        
+        ref.child("upcomingEvents/\(event.id)").setValue(eventDict)
     }
 }
