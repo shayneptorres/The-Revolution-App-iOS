@@ -9,6 +9,10 @@
 import UIKit
 import CoreLocation
 import MapKit
+import RxRealm
+import RxSwift
+import Realm
+import RealmSwift
 
 class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     
@@ -26,7 +30,19 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     
-    var event : Event?
+    @IBOutlet weak var websiteBtn: UIButton! {
+        didSet {
+            handleWebsiteButton()
+        }
+    }
+    
+    var event = Variable<Event?>(nil)
+    
+    func handleWebsiteButton(){
+        if let url = event.value?.url() {
+            websiteBtn.isHidden = false
+        }
+    }
     
     func updateUI(event: Event){
         navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
@@ -39,6 +55,8 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
         timeLabel.text = formatter.string(from: event.startDate)
         addressLabel.text = event.address
         infoLabel.text = event.desc
+        
+        handleWebsiteButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,20 +65,48 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
         
     }
     
+    let db = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let event = event else { return }
+        guard let event = event.value else { return }
         updateUI(event: event)
         findLocation(event: event, onMap: mapView)
+        
+        let realm = try! Realm()
+        let events = realm.objects(Event.self)
+        
+        Observable.collection(from: events)
+            .map({ evts in evts.toArray() })
+            .map({ evts in evts.filter({ $0.id == self.event.value?.id }).first })
+            .map({ e in e })
+            .bind(to: self.event)
+            .addDisposableTo(db)
+        
+        self.event.asObservable().subscribe({ [weak self] e in
+            if let evt = e.element, let realEvt = evt {
+                self?.updateUI(event: realEvt)
+            } else {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }).addDisposableTo(db)
+        
     }
 
     @IBAction func getDirections(_ sender: UIButton) {
-        guard let event = event else { return }
+        guard let event = event.value else { return }
         directions(event: event)
     }
     
+    @IBAction func goToWebsite(_ sender: UIButton) {
+        if let url = event.value?.url() {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
+    
+    
     @IBAction func deleteEvent(_ sender: UIButton) {
-        guard let event = event else { return }
+        guard let event = event.value else { return }
         FirebaseService.instance.deleteEvent(event: event)
         self.navigationController?.popViewController(animated: true)
     }
@@ -72,7 +118,7 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEvent" {
             let addEventVC = segue.destination as! AddEventVC
-            addEventVC.event = self.event
+            addEventVC.event = self.event.value
         }
     }
 

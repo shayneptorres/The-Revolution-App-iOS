@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 protocol SlideMenuDelegate {
     func menuItemSelected(atIndex index: Int)
@@ -15,6 +16,11 @@ protocol SlideMenuDelegate {
 class MenuCell : UITableViewCell {
     
     @IBOutlet weak var itemName: UILabel!
+}
+
+enum MenuAdminMode {
+    case userAuthenticated
+    case userUnauthenticated
 }
 
 class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -35,7 +41,11 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var delegate : SlideMenuDelegate?
     
-    var menuItems : [String] = ["Admin sign-in"]
+    var adminMenuMode = MenuAdminMode.userUnauthenticated {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +53,74 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if AdminService.instance.getUserCredentials() == nil {
+            adminMenuMode = .userUnauthenticated
+        } else {
+            adminMenuMode = .userAuthenticated
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuCell = tableView.dequeueReusableCell(withIdentifier: "menuCell") as! MenuCell
-        menuCell.itemName.text = menuItems[indexPath.row]
+        
+        if adminMenuMode == .userAuthenticated {
+            menuCell.itemName.text = "Sign out"
+        } else {
+            menuCell.itemName.text = "Admin Sign-in"
+        }
+        
         return menuCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0 {
+            
+            let sb = UIStoryboard(name: "Admin", bundle: nil)
+            
+            guard
+                let adminNav = sb.instantiateViewController(withIdentifier: "AdminLoginNav") as? UINavigationController,
+                self.navigationController?.childViewControllers[0] != nil,
+                let upcomingVC = parent as? UpcomingEventsVC,
+                let menuNav = upcomingVC.parent as? MenuNav
+                else { return }
+            
+            if adminMenuMode == .userUnauthenticated {
+                /// If the user is not yet logged in, take them to the login page
+                upcomingVC.closeMenu()
+                upcomingVC.present(adminNav, animated: true, completion:nil)
+            } else {
+                /// If the user is already logged in, attempt to sign the user out
+                let signOutAlert = UIAlertController(title: "Sign out?", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+                let confirmAction = UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+                    AdminService.instance.resetUserCredentials()
+                    self.adminMenuMode = .userUnauthenticated
+                    upcomingVC.updateAdminUISettings()
+                })
+                
+                let cancelAction = UIAlertAction(title: "Not yet", style: .cancel, handler: nil)
+                signOutAlert.addAction(confirmAction)
+                signOutAlert.addAction(cancelAction)
+                self.present(signOutAlert, animated: true, completion: { _ in upcomingVC.closeMenu() })
+            }
+            
+            
+        }
     }
 
 }

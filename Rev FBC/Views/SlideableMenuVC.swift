@@ -49,13 +49,15 @@ class SlideableMenuVC: UIViewController, SlideMenuDelegate {
         }
     }
     
+    var btnShowMenu : UIButton?
+    
     func addSlideMenuButton(){
-        let btnShowMenu = UIButton(type: UIButtonType.system)
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
-        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btnShowMenu.addTarget(self, action: #selector(self.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        btnShowMenu = UIButton(type: UIButtonType.system)
+        btnShowMenu?.setImage(self.defaultMenuImage(), for: UIControlState())
+        btnShowMenu?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btnShowMenu?.addTarget(self, action: #selector(self.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
-        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+        let customBarItem = UIBarButtonItem(customView: btnShowMenu!)
         
         navigationItem.leftBarButtonItem = customBarItem;
         navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
@@ -84,25 +86,28 @@ class SlideableMenuVC: UIViewController, SlideMenuDelegate {
         return defaultMenuImage;
     }
     
+    func closeMenu(){
+        // To Hide Menu If it already there
+        self.menuItemSelected(atIndex: -1);
+        btnShowMenu?.tag = 0
+        let viewMenuBack : UIView = view.subviews.last!
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            var frameMenu : CGRect = viewMenuBack.frame
+            frameMenu.origin.x = -1 * UIScreen.main.bounds.size.width
+            viewMenuBack.frame = frameMenu
+            viewMenuBack.layoutIfNeeded()
+            viewMenuBack.backgroundColor = UIColor.clear
+        }, completion: { (finished) -> Void in
+            viewMenuBack.removeFromSuperview()
+        })
+    }
+    
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
+        
         if (sender.tag == 10)
         {
-            // To Hide Menu If it already there
-            self.menuItemSelected(atIndex: -1);
-            
-            sender.tag = 0;
-            
-            let viewMenuBack : UIView = view.subviews.last!
-            
-            UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                var frameMenu : CGRect = viewMenuBack.frame
-                frameMenu.origin.x = -1 * UIScreen.main.bounds.size.width
-                viewMenuBack.frame = frameMenu
-                viewMenuBack.layoutIfNeeded()
-                viewMenuBack.backgroundColor = UIColor.clear
-            }, completion: { (finished) -> Void in
-                viewMenuBack.removeFromSuperview()
-            })
+            closeMenu()
             
             return
         }

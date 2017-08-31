@@ -15,6 +15,20 @@ class FirebaseService {
     
     static let instance = FirebaseService()
     
+    func loginUser(email: String, password: String) -> Promise<Bool> {
+        return Promise<Bool>(work: { fulfill, reject in
+            Auth.auth().signIn(withEmail: email, password: password) { (user,error) in
+                print("USER: ",user)
+                print("ERROR: ",error)
+                guard user != nil else {
+                    fulfill(false)
+                    return
+                }
+                fulfill(true)
+            }
+        })
+    }
+    
     func loginGuest() -> Promise<Bool> {
         
         return Promise<Bool>(work: { fulfill, reject in
@@ -55,6 +69,7 @@ class FirebaseService {
                             let key = snapDict.key as? String,
                             let name = eventDict["name"] as? String,
                             let desc = eventDict["desc"] as? String,
+                            let website = eventDict["website"] as? String,
                             let address = eventDict["address"] as? String,
                             let dateStr = eventDict["startDate"] as? String {
                             
@@ -67,6 +82,7 @@ class FirebaseService {
                                     e?.name = name
                                     e?.desc = desc
                                     e?.address = address
+                                    e?.urlString = website
                                     e?.startDate = dateFormatter.date(from: dateStr)!
                                 }
                             } else {
@@ -75,6 +91,7 @@ class FirebaseService {
                                 event.id = key
                                 event.name = name
                                 event.desc = desc
+                                event.urlString = website
                                 event.address = address
                                 event.startDate = dateFormatter.date(from: dateStr)!
                                 event.save()
@@ -113,6 +130,7 @@ class FirebaseService {
                     let name = eventDict["name"] as? String,
                     let desc = eventDict["desc"] as? String,
                     let address = eventDict["address"] as? String,
+                    let website = eventDict["website"] as? String,
                     let dateStr = eventDict["startDate"] as? String {
                     
                     idsToKeep.append(key)
@@ -124,7 +142,9 @@ class FirebaseService {
                             e?.name = name
                             e?.desc = desc
                             e?.address = address
+                            e?.urlString = website
                             e?.startDate = dateFormatter.date(from: dateStr)!
+                            
                         }
                     } else {
                         /// Else create a new event and save it
@@ -132,6 +152,7 @@ class FirebaseService {
                         event.id = key
                         event.name = name
                         event.desc = desc
+                        event.urlString = website
                         event.address = address
                         event.startDate = dateFormatter.date(from: dateStr)!
                         event.save()
@@ -155,6 +176,7 @@ class FirebaseService {
         let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
                                         "address":event.address as NSString,
                                         "desc":event.desc as NSString,
+                                        "website":event.urlString as NSString,
                                         "startDate":dateFormatter.string(from: event.startDate) as NSString
                                         ]
         let key = ref.child("upcomingEvents").childByAutoId().key as NSString
@@ -178,6 +200,7 @@ class FirebaseService {
         
         let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
                                                   "address":event.address as NSString,
+                                                  "website":event.urlString as NSString,
                                                   "desc":event.desc as NSString,
                                                   "startDate":dateFormatter.string(from: event.startDate) as NSString
         ]

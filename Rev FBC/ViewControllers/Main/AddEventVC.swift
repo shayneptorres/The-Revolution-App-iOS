@@ -9,6 +9,8 @@
 import UIKit
 import Eureka
 import SwiftDate
+import RxSwift
+import RxRealm
 
 class AddEventVC: FormViewController {
     
@@ -24,9 +26,13 @@ class AddEventVC: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpForm()
         
+    }
+    
+    func setUpForm(){
         form
-        +++ Section("What")
+            +++ Section("What")
             <<< TextRow() { row in
                 row.title = "Name:"
                 row.tag = "name"
@@ -38,15 +44,20 @@ class AddEventVC: FormViewController {
                 row.tag = "info"
                 row.value = event?.desc
             }
+            <<< TextRow() { row in
+                row.title = "Website:"
+                row.tag = "website"
+                row.value = event?.urlString
+            }
             
-        +++ Section("Where")
+            +++ Section("Where")
             <<< TextAreaRow() { row in
                 row.placeholder = "Address:"
                 row.tag = "address"
                 row.value = event?.address
             }
             
-        +++ Section("When")
+            +++ Section("When")
             <<< DateRow() { row in
                 row.title = "Date:"
                 row.tag = "date"
@@ -57,44 +68,47 @@ class AddEventVC: FormViewController {
                 row.tag = "startTime"
                 row.value = event?.startDate
             }
-        
-        +++ Section("")
+            
+            +++ Section("")
             <<< ButtonRow() { row in
                 row.title = "Save event"
-            }.onCellSelection {_,_ in
-                
-                guard
-                    let nameRow = self.form.rowBy(tag: "name") as? TextRow,
-                    let infoRow = self.form.rowBy(tag: "info") as? TextAreaRow,
-                    let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
-                    let dateRow = self.form.rowBy(tag: "date") as? DateRow,
-                    let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
-                    let name = nameRow.value,
-                    let info = infoRow.value,
-                    let address = addressRow.value,
-                    let date = dateRow.value,
-                    let startTime = startRow.value
-                else { return }
-                
-                var startDate = date.startOfDay
-                startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
-                print(startDate)
-                
-                let event = Event()
-                event.name = name
-                event.desc = info
-                event.address = address
-                event.startDate = startDate
-                
-                if self.event != nil {
-                    event.id = (self.event?.id)!
-                    FirebaseService.instance.updateEvent(event: event)
-                } else {
-                    FirebaseService.instance.addEvent(event: event)
-                }
-                
-                self.navigationController?.popViewController(animated: true)
-            }
+                }.onCellSelection {_,_ in
+                    
+                    guard
+                        let nameRow = self.form.rowBy(tag: "name") as? TextRow,
+                        let infoRow = self.form.rowBy(tag: "info") as? TextAreaRow,
+                        let websiteRow = self.form.rowBy(tag: "website") as? TextRow,
+                        let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
+                        let dateRow = self.form.rowBy(tag: "date") as? DateRow,
+                        let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
+                        let name = nameRow.value,
+                        let info = infoRow.value,
+                        let website = websiteRow.value,
+                        let address = addressRow.value,
+                        let date = dateRow.value,
+                        let startTime = startRow.value
+                        else { return }
+                    
+                    var startDate = date.startOfDay
+                    startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
+                    print(startDate)
+                    
+                    let event = Event()
+                    event.name = name
+                    event.urlString = website
+                    event.desc = info
+                    event.address = address
+                    event.startDate = startDate
+                    
+                    if self.event != nil {
+                        event.id = (self.event?.id)!
+                        FirebaseService.instance.updateEvent(event: event)
+                    } else {
+                        FirebaseService.instance.addEvent(event: event)
+                    }
+                    
+                    self.navigationController?.popViewController(animated: true)
+        }
     }
 
 }

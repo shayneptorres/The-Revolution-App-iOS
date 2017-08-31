@@ -19,7 +19,7 @@ class MenuNav: UINavigationController, SlideMenuDelegate {
 
     func menuItemSelected(atIndex index: Int) {
         let topViewController : UIViewController = self.navigationController!.topViewController!
-        print("View Controller is : \(topViewController) \n", terminator: "")
+        
         switch(index){
         case 0:
             print("Home\n", terminator: "")

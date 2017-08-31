@@ -10,7 +10,7 @@ import UIKit
 import  JVFloatLabeledTextField
 
 //@IBDesignable
-class FormTextField: JVFloatLabeledTextField {
+class FormTextField : UITextField {
     
     @IBInspectable
     var borderWidth : CGFloat = 1
@@ -25,8 +25,8 @@ class FormTextField: JVFloatLabeledTextField {
         super.draw(rect)
         drawBorder()
         
-        self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? "",
-                                                        attributes: [NSForegroundColorAttributeName: UIColor.white])
+//        self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? "",
+//                                                        attributes: [NSForegroundColorAttributeName: UIColor.white])
     }
     
     func drawBorder(){

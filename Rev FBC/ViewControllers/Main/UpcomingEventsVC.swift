@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import KeychainAccess
 
 class UpcomingEventsVC: SlideableMenuVC {
     
@@ -36,12 +38,37 @@ class UpcomingEventsVC: SlideableMenuVC {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
         tableView.reloadData()
+        
+        updateAdminUISettings()
     }
+    
+    func updateAdminUISettings(){
+        if AdminService.instance.getUserCredentials() == nil {
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            
+            if navigationItem.rightBarButtonItem != nil { return }
+            addEventBtn = UIBarButtonItem(image: UIImage.init(named: "addEventIcon"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(goToEventForm))
+            
+            let btn = UIBarButtonItem(image: UIImage.init(named: "addEventIcon"),
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(goToEventForm))
+            
+            btn.tintColor = UIColor(netHex: 0xF0C930)
+            
+            navigationItem.rightBarButtonItem = btn
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +82,8 @@ class UpcomingEventsVC: SlideableMenuVC {
         
         /// Start observing upcoming events
         observer = EventObserver(tableView: tableView, events: events)
+        
+        
     }
     
     func resetEvents(){
@@ -64,6 +93,10 @@ class UpcomingEventsVC: SlideableMenuVC {
     
     
     @IBAction func addEvent(_ sender: UIBarButtonItem) {
+        goToEventForm()
+    }
+    
+    func goToEventForm(){
         performSegue(withIdentifier: "AddEvent", sender: self)
     }
     
@@ -75,7 +108,7 @@ extension UpcomingEventsVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EventDetail" {
             guard let detailVC = segue.destination as? UpcomingEventDetailVC else { return }
-            detailVC.event = selectedEvent
+            detailVC.event = Variable<Event?>(selectedEvent)
         } else if segue.identifier == "AddEvent" {
         
         }

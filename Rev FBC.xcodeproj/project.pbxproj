@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		154CBA8BEC80F74580BADFB8 /* Pods_Rev_FBCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255021A244072A90E14191C2 /* Pods_Rev_FBCTests.framework */; };
+		B80A2DD61F505FCF00683AF6 /* UpcomingEventsDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80A2DD51F505FCF00683AF6 /* UpcomingEventsDetailVM.swift */; };
 		B821415E1F3E9F9F0095758C /* LocationMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821415C1F3E9F9F0095758C /* LocationMapCell.swift */; };
 		B821415F1F3E9F9F0095758C /* LocationMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B821415D1F3E9F9F0095758C /* LocationMapCell.xib */; };
 		B8260F991F398A4400175CEA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8260F981F398A4400175CEA /* Colors.swift */; };
@@ -45,6 +46,7 @@
 		B8BF09E31F36417900172662 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E21F36417900172662 /* Promise.swift */; };
 		B8BF09E51F36419000172662 /* PromiseExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E41F36419000172662 /* PromiseExtras.swift */; };
 		B8BF09E71F3644E600172662 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF09E61F3644E600172662 /* AppTabBarController.swift */; };
+		B8CADAA71F57E08A006C626B /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CADAA61F57E08A006C626B /* AdminService.swift */; };
 		B8CE1AAF1F46CACB0044F32A /* EventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE1AAE1F46CACB0044F32A /* EventObserver.swift */; };
 		B8CFB63D1F37B4D800E906BD /* MenuNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB63C1F37B4D800E906BD /* MenuNav.swift */; };
 		B8EF1BD61F383BF80071BC20 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82F4C1F1F37ABAC0014D322 /* MenuVC.swift */; };
@@ -80,6 +82,7 @@
 		3C82E0ED588DD7945D193790 /* Pods-Rev FBC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev FBC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rev FBC/Pods-Rev FBC.debug.xcconfig"; sourceTree = "<group>"; };
 		72E0D739FAFB448709A085FC /* Pods_Rev_FBC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rev_FBC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8939EDCD158BC4D70E63D7ED /* Pods_Rev_FBCUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rev_FBCUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B80A2DD51F505FCF00683AF6 /* UpcomingEventsDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventsDetailVM.swift; sourceTree = "<group>"; };
 		B821415C1F3E9F9F0095758C /* LocationMapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapCell.swift; sourceTree = "<group>"; };
 		B821415D1F3E9F9F0095758C /* LocationMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationMapCell.xib; sourceTree = "<group>"; };
 		B8260F981F398A4400175CEA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		B8BF09E21F36417900172662 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		B8BF09E41F36419000172662 /* PromiseExtras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseExtras.swift; sourceTree = "<group>"; };
 		B8BF09E61F3644E600172662 /* AppTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
+		B8CADAA61F57E08A006C626B /* AdminService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
 		B8CE1AAE1F46CACB0044F32A /* EventObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventObserver.swift; sourceTree = "<group>"; };
 		B8CFB63C1F37B4D800E906BD /* MenuNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNav.swift; sourceTree = "<group>"; };
 		B8EF1BD71F383EDA0071BC20 /* SlideableMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideableMenuVC.swift; sourceTree = "<group>"; };
@@ -162,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B80A2DD41F505F5F00683AF6 /* UpcomingEventsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B887CC521F42825A009EECAD /* UpcomingEventDetailVC.swift */,
+				B80A2DD51F505FCF00683AF6 /* UpcomingEventsDetailVM.swift */,
+			);
+			path = UpcomingEventsDetail;
+			sourceTree = "<group>";
+		};
 		B8260F971F398A2200175CEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +197,14 @@
 			children = (
 				B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */,
 			);
-			name = Admin;
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		B880B2601F5650E300A18DA7 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Observers;
 			sourceTree = "<group>";
 		};
 		B8914DD31F35A97600F51CBD = {
@@ -214,6 +234,7 @@
 			children = (
 				B889F7071F40A064006DB561 /* GoogleService-Info.plist */,
 				B8914DDF1F35A97600F51CBD /* AppDelegate.swift */,
+				B880B2601F5650E300A18DA7 /* Observers */,
 				B8914E131F35AA4500F51CBD /* Storyboards */,
 				B8914E0D1F35A9CF00F51CBD /* View Controllers */,
 				B8914E0E1F35A9DC00F51CBD /* Models */,
@@ -292,6 +313,7 @@
 			children = (
 				B889F7091F4176F2006DB561 /* FirebaseService.swift */,
 				B8CE1AAE1F46CACB0044F32A /* EventObserver.swift */,
+				B8CADAA61F57E08A006C626B /* AdminService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -347,11 +369,11 @@
 		B8A4E9A41F36491400A2DFE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B80A2DD41F505F5F00683AF6 /* UpcomingEventsDetail */,
 				B89C1BCE1F37903C0099B567 /* Cells */,
 				B89C1BC91F378D1D0099B567 /* UpcomingEventsVC.swift */,
 				B8EF1BD91F3842FA0071BC20 /* AddressVC.swift */,
 				B85D990C1F3BD7AA005A6A23 /* InfoVC.swift */,
-				B887CC521F42825A009EECAD /* UpcomingEventDetailVC.swift */,
 				B887CC541F42C32C009EECAD /* AddEventVC.swift */,
 			);
 			path = Main;
@@ -680,6 +702,7 @@
 				B821415E1F3E9F9F0095758C /* LocationMapCell.swift in Sources */,
 				B8B0C3B31F43F18100842C59 /* FormCell.swift in Sources */,
 				B89C1BDA1F3791F70099B567 /* Enums.swift in Sources */,
+				B8CADAA71F57E08A006C626B /* AdminService.swift in Sources */,
 				B85D990D1F3BD7AA005A6A23 /* InfoVC.swift in Sources */,
 				B8BF09E51F36419000172662 /* PromiseExtras.swift in Sources */,
 				B8EF1BD61F383BF80071BC20 /* MenuVC.swift in Sources */,
@@ -687,6 +710,7 @@
 				B8EF1BD81F383EDA0071BC20 /* SlideableMenuVC.swift in Sources */,
 				B889F70A1F4176F2006DB561 /* FirebaseService.swift in Sources */,
 				B8914DE01F35A97600F51CBD /* AppDelegate.swift in Sources */,
+				B80A2DD61F505FCF00683AF6 /* UpcomingEventsDetailVM.swift in Sources */,
 				B8436B9C1F4E5976005E0275 /* AdminLoginVC.swift in Sources */,
 				B887CC531F42825A009EECAD /* UpcomingEventDetailVC.swift in Sources */,
 				B8260F991F398A4400175CEA /* Colors.swift in Sources */,

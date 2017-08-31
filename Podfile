@@ -20,6 +20,8 @@ target 'Rev FBC' do
   pod 'Eureka'
   pod 'RxSwift',    '~> 3.0'
   pod 'RxCocoa',    '~> 3.0'
+  pod 'RxRealm'
+  pod 'KeychainAccess'
 
   target 'Rev FBCTests' do
     inherit! :search_paths

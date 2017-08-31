@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+import Foundation
+import Realm
+import RealmSwift
+import RxSwift
+import RxCocoa
+import RxRealm
+
 class EventObserver {
     
     var table: UITableView?
@@ -28,5 +35,7 @@ class EventObserver {
             print("events reloaded")
         }
     }
+    
+    /// Place the realm event observer here
     
 }
