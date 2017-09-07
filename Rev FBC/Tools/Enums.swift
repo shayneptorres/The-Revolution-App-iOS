@@ -10,10 +10,12 @@ import Foundation
 
 enum CellID : String {
     case upcomingEvent = "upcomingEvents"
+    case upcomingEventHeaderCell = "upcomingEventHeaderCell"
     case locationCell = "locationCell"
     case locationActionCell = "locationActionCell"
     case locationInfoCell = "locationInfoCell"
     case locationMapCell = "locationMapCell"
     case formCell = "formCell"
+    
 }
 

@@ -27,8 +27,11 @@ class UpcomingEventsVC: SlideableMenuVC {
             tableView.separatorStyle = .none
             
             
-            let nib = UINib(nibName: "UpcomingEventCell", bundle: nil)
+            var nib = UINib(nibName: "UpcomingEventCell", bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: CellID.upcomingEvent.rawValue)
+            
+            nib = UINib(nibName: "UpcomingEventHeaderTableViewCell", bundle: nil)
+            self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.upcomingEventHeaderCell.rawValue)
         }
     }
     
@@ -40,8 +43,6 @@ class UpcomingEventsVC: SlideableMenuVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-        tableView.reloadData()
         
         updateAdminUISettings()
     }
@@ -75,20 +76,16 @@ class UpcomingEventsVC: SlideableMenuVC {
         FirebaseService.instance.loginGuest().then({ loginSuccess in
             if loginSuccess {
                 FirebaseService.instance.getUpcomingEvents().then({ success in
-                    self.resetEvents()
+                    /// Start observing upcoming events
+                    self.observer = EventObserver(tableView: self.tableView, events: self.events) {
+                        self.events.removeAll()
+                        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+                        self.tableView.reloadData()
+                    }
                 })
             }
         })
         
-        /// Start observing upcoming events
-        observer = EventObserver(tableView: tableView, events: events)
-        
-        
-    }
-    
-    func resetEvents(){
-        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-        self.tableView.reloadData()
     }
     
     
@@ -119,20 +116,37 @@ extension UpcomingEventsVC {
 extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-        return events.count
+        let specialEvents = events.filter({ $0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        let regEvents = events.filter({ !$0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        if section == 0 {
+            return specialEvents.count
+        } else {
+            return regEvents.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let specialEvents = events.filter({ $0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        let regEvents = events.filter({ !$0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        
         var cell = UITableViewCell()
         
-        let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
-        eventCell.event = events[indexPath.row]
-        cell = eventCell
+        if indexPath.section == 0 {
+            let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
+            eventCell.event = specialEvents[indexPath.row]
+            cell = eventCell
+        } else {
+            let eventCell = tableView.dequeueReusableCell(withIdentifier: CellID.upcomingEvent.rawValue) as! UpcomingEventCell
+            eventCell.event = regEvents[indexPath.row]
+            cell = eventCell
+        }
+        
+        
         cell.selectionStyle = .none
         
         return cell
@@ -143,4 +157,19 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "EventDetail", sender: self)
     }
     
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let eventHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.upcomingEventHeaderCell.rawValue) as! UpcomingEventHeaderTableViewCell
+        if section == 0 {
+            eventHeader.headerNameLabel.text = "Special Events"
+        } else {
+            eventHeader.headerNameLabel.text = "Upcoming Events"
+        }
+        
+        return eventHeader
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
 }

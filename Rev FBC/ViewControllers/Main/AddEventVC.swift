@@ -10,7 +10,6 @@ import UIKit
 import Eureka
 import SwiftDate
 import RxSwift
-import RxRealm
 
 class AddEventVC: FormViewController {
     
@@ -39,15 +38,20 @@ class AddEventVC: FormViewController {
                 row.value = event?.name
                 
             }
+            <<< TextRow() { row in
+                row.title = "Website:"
+                row.tag = "website"
+                row.value = event?.urlString
+            }
             <<< TextAreaRow() { row in
                 row.placeholder = "Info:"
                 row.tag = "info"
                 row.value = event?.desc
             }
-            <<< TextRow() { row in
-                row.title = "Website:"
-                row.tag = "website"
-                row.value = event?.urlString
+            <<< SwitchRow("SwitchRow") { row in
+                row.title = "Special Event"
+                row.tag = "special"
+                row.value = event?.isSpecial
             }
             
             +++ Section("Where")
@@ -78,6 +82,7 @@ class AddEventVC: FormViewController {
                         let nameRow = self.form.rowBy(tag: "name") as? TextRow,
                         let infoRow = self.form.rowBy(tag: "info") as? TextAreaRow,
                         let websiteRow = self.form.rowBy(tag: "website") as? TextRow,
+                        let specialRow = self.form.rowBy(tag: "special") as? SwitchRow,
                         let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
                         let dateRow = self.form.rowBy(tag: "date") as? DateRow,
                         let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
@@ -88,6 +93,10 @@ class AddEventVC: FormViewController {
                         let date = dateRow.value,
                         let startTime = startRow.value
                         else { return }
+                    var special = false
+                    if specialRow.value != nil {
+                        special = specialRow.value!
+                    }
                     
                     var startDate = date.startOfDay
                     startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
@@ -95,6 +104,7 @@ class AddEventVC: FormViewController {
                     
                     let event = Event()
                     event.name = name
+                    event.isSpecial = special
                     event.urlString = website
                     event.desc = info
                     event.address = address

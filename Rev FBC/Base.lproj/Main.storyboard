@@ -257,6 +257,8 @@
                     <connections>
                         <outlet property="addressLabel" destination="aAh-7S-kAM" id="jXe-95-8lu"/>
                         <outlet property="container" destination="oaB-Lc-BMh" id="RYb-VR-Vdp"/>
+                        <outlet property="deleteBtn" destination="IgG-Fm-nkj" id="bfR-Q7-pMJ"/>
+                        <outlet property="editBtn" destination="58v-xt-Tiq" id="hzR-hM-FPV"/>
                         <outlet property="eventNameLabel" destination="epf-Fn-BTV" id="EZy-74-p1f"/>
                         <outlet property="infoLabel" destination="wDn-1g-wfu" id="B4V-xh-P9L"/>
                         <outlet property="mapView" destination="bEf-bo-RcC" id="Bw4-7v-LIF"/>

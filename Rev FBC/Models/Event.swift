@@ -20,6 +20,7 @@ class Event : Object, RealmManagable, URLConverter {
     dynamic var startDate = Date()
     dynamic var address = String()
     dynamic var urlString = String()
+    dynamic var isSpecial = Bool()
     
     typealias RealmObject = Event
     

@@ -14,25 +14,22 @@ import Realm
 import RealmSwift
 import RxSwift
 import RxCocoa
-import RxRealm
+
 
 class EventObserver {
     
     var table: UITableView?
     var events: [Event] = []
     
-    init(tableView: UITableView, events: [Event]){
+    init(tableView: UITableView, events: [Event], completion: @escaping ()->()){
         self.table = tableView
         self.events = events
-        startObserving()
+        startObserving(completion: completion)
     }
     
-    func startObserving() {
+    func startObserving(completion: @escaping ()->()) {
         FirebaseService.instance.observeEventChanges {
-            self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-            print(self.events)
-            self.table?.reloadData()
-            print("events reloaded")
+            completion()
         }
     }
     

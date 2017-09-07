@@ -25,6 +25,8 @@
 		B85D99191F3DA83A005A6A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85D99181F3DA83A005A6A23 /* Assets.xcassets */; };
 		B85D991C1F3DAB00005A6A23 /* LocationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D991A1F3DAB00005A6A23 /* LocationInfoCell.swift */; };
 		B85D991D1F3DAB00005A6A23 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85D991B1F3DAB00005A6A23 /* LocationInfoCell.xib */; };
+		B85FF31C1F602A16003C365D /* UpcomingEventHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85FF31A1F602A16003C365D /* UpcomingEventHeaderTableViewCell.swift */; };
+		B85FF31D1F602A16003C365D /* UpcomingEventHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85FF31B1F602A16003C365D /* UpcomingEventHeaderTableViewCell.xib */; };
 		B887CC531F42825A009EECAD /* UpcomingEventDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B887CC521F42825A009EECAD /* UpcomingEventDetailVC.swift */; };
 		B887CC551F42C32C009EECAD /* AddEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B887CC541F42C32C009EECAD /* AddEventVC.swift */; };
 		B889F7081F40A064006DB561 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B889F7071F40A064006DB561 /* GoogleService-Info.plist */; };
@@ -100,6 +102,8 @@
 		B85D99181F3DA83A005A6A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B85D991A1F3DAB00005A6A23 /* LocationInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfoCell.swift; sourceTree = "<group>"; };
 		B85D991B1F3DAB00005A6A23 /* LocationInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationInfoCell.xib; sourceTree = "<group>"; };
+		B85FF31A1F602A16003C365D /* UpcomingEventHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		B85FF31B1F602A16003C365D /* UpcomingEventHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpcomingEventHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		B887CC521F42825A009EECAD /* UpcomingEventDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingEventDetailVC.swift; sourceTree = "<group>"; };
 		B887CC541F42C32C009EECAD /* AddEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventVC.swift; sourceTree = "<group>"; };
 		B889F7071F40A064006DB561 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Supporting files/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 				B821415D1F3E9F9F0095758C /* LocationMapCell.xib */,
 				B8B0C3B11F43F18100842C59 /* FormCell.swift */,
 				B8B0C3B21F43F18100842C59 /* FormCell.xib */,
+				B85FF31A1F602A16003C365D /* UpcomingEventHeaderTableViewCell.swift */,
+				B85FF31B1F602A16003C365D /* UpcomingEventHeaderTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 			files = (
 				B85D99171F3D8CA8005A6A23 /* LocationActionCell.xib in Resources */,
 				B85D99111F3D8285005A6A23 /* LocationCell.xib in Resources */,
+				B85FF31D1F602A16003C365D /* UpcomingEventHeaderTableViewCell.xib in Resources */,
 				B85D991D1F3DAB00005A6A23 /* LocationInfoCell.xib in Resources */,
 				B82F4C1D1F37A69A0014D322 /* Menu.storyboard in Resources */,
 				B8436B9A1F4E5956005E0275 /* Admin.storyboard in Resources */,
@@ -719,6 +726,7 @@
 				B8EF1BDA1F3842FA0071BC20 /* AddressVC.swift in Sources */,
 				B89C1BCA1F378D1D0099B567 /* UpcomingEventsVC.swift in Sources */,
 				B8260F9B1F398CAB00175CEA /* UIView.swift in Sources */,
+				B85FF31C1F602A16003C365D /* UpcomingEventHeaderTableViewCell.swift in Sources */,
 				B85D99131F3D8764005A6A23 /* Constants.swift in Sources */,
 				B85D99101F3D8285005A6A23 /* LocationCell.swift in Sources */,
 				B887CC551F42C32C009EECAD /* AddEventVC.swift in Sources */,

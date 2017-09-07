@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import MapKit
-import RxRealm
 import RxSwift
 import Realm
 import RealmSwift
@@ -35,6 +34,8 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
             handleWebsiteButton()
         }
     }
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var editBtn: UIBarButtonItem!
     
     var event = Variable<Event?>(nil)
     
@@ -57,6 +58,20 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
         infoLabel.text = event.desc
         
         handleWebsiteButton()
+        
+        if AdminService.instance.getUserCredentials() == nil {
+            deleteBtn.isHidden = true
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            if navigationItem.rightBarButtonItem != nil { return }
+            let btn = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(segueToEdit))
+            
+            btn.tintColor = UIColor(netHex: 0xF0C930)
+            editBtn = btn
+            
+            navigationItem.rightBarButtonItem = btn
+            
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,12 +91,12 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
         let realm = try! Realm()
         let events = realm.objects(Event.self)
         
-        Observable.collection(from: events)
-            .map({ evts in evts.toArray() })
-            .map({ evts in evts.filter({ $0.id == self.event.value?.id }).first })
-            .map({ e in e })
-            .bind(to: self.event)
-            .addDisposableTo(db)
+//        Observable.collection(from: events)
+//            .map({ evts in evts.toArray() })
+//            .map({ evts in evts.filter({ $0.id == self.event.value?.id }).first })
+//            .map({ e in e })
+//            .bind(to: self.event)
+//            .addDisposableTo(db)
         
         self.event.asObservable().subscribe({ [weak self] e in
             if let evt = e.element, let realEvt = evt {
@@ -107,11 +122,16 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     
     @IBAction func deleteEvent(_ sender: UIButton) {
         guard let event = event.value else { return }
-        FirebaseService.instance.deleteEvent(event: event)
         self.navigationController?.popViewController(animated: true)
+        FirebaseService.instance.deleteEvent(event: event)
+        
     }
     
     @IBAction func editEvent(_ sender: UIBarButtonItem) {
+        segueToEdit()
+    }
+    
+    func segueToEdit(){
         performSegue(withIdentifier: "EditEvent", sender: self)
     }
     

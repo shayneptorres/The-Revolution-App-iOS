@@ -43,11 +43,9 @@ class FirebaseService {
     }
     
     private func deleteOldEvents(ids: [String]){
-        Event.getAll().forEach({ event in
-            if !ids.contains(event.id) {
-                event.delete()
-            }
-        })
+        let events = Event.getAll()
+        let deletingEvents = events.filter({ e in !ids.contains(e.id) })
+        deletingEvents.forEach({ e in e.delete() })
     }
 
     func getUpcomingEvents() -> Promise<Bool> {
@@ -71,6 +69,7 @@ class FirebaseService {
                             let desc = eventDict["desc"] as? String,
                             let website = eventDict["website"] as? String,
                             let address = eventDict["address"] as? String,
+                            let isSpecial = eventDict["isSpecial"] as? Bool,
                             let dateStr = eventDict["startDate"] as? String {
                             
                             idsToKeep.append(key)
@@ -83,6 +82,7 @@ class FirebaseService {
                                     e?.desc = desc
                                     e?.address = address
                                     e?.urlString = website
+                                    e?.isSpecial = isSpecial
                                     e?.startDate = dateFormatter.date(from: dateStr)!
                                 }
                             } else {
@@ -93,6 +93,7 @@ class FirebaseService {
                                 event.desc = desc
                                 event.urlString = website
                                 event.address = address
+                                event.isSpecial = isSpecial
                                 event.startDate = dateFormatter.date(from: dateStr)!
                                 event.save()
                                 
@@ -131,6 +132,7 @@ class FirebaseService {
                     let desc = eventDict["desc"] as? String,
                     let address = eventDict["address"] as? String,
                     let website = eventDict["website"] as? String,
+                    let isSpecial = eventDict["isSpecial"] as? Bool,
                     let dateStr = eventDict["startDate"] as? String {
                     
                     idsToKeep.append(key)
@@ -142,6 +144,7 @@ class FirebaseService {
                             e?.name = name
                             e?.desc = desc
                             e?.address = address
+                            e?.isSpecial = isSpecial
                             e?.urlString = website
                             e?.startDate = dateFormatter.date(from: dateStr)!
                             
@@ -152,6 +155,7 @@ class FirebaseService {
                         event.id = key
                         event.name = name
                         event.desc = desc
+                        event.isSpecial = isSpecial
                         event.urlString = website
                         event.address = address
                         event.startDate = dateFormatter.date(from: dateStr)!
@@ -161,6 +165,7 @@ class FirebaseService {
                 } else {
                 }
             })
+            
             self.deleteOldEvents(ids: idsToKeep)
             idsToKeep.removeAll()
             completion()
@@ -177,6 +182,7 @@ class FirebaseService {
                                         "address":event.address as NSString,
                                         "desc":event.desc as NSString,
                                         "website":event.urlString as NSString,
+                                        "isSpecial":event.isSpecial as Bool,
                                         "startDate":dateFormatter.string(from: event.startDate) as NSString
                                         ]
         let key = ref.child("upcomingEvents").childByAutoId().key as NSString
@@ -202,6 +208,7 @@ class FirebaseService {
                                                   "address":event.address as NSString,
                                                   "website":event.urlString as NSString,
                                                   "desc":event.desc as NSString,
+                                                  "isSpecial":event.isSpecial as Bool,
                                                   "startDate":dateFormatter.string(from: event.startDate) as NSString
         ]
         
