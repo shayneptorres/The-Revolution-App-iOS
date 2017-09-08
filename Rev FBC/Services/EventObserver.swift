@@ -15,22 +15,30 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 
+protocol EventObserverDelegate {
+    func update()
+    var delegateID : Int? { get set }
+}
+
+
 
 class EventObserver {
     
     var table: UITableView?
     var events: [Event] = []
+    var delegates : [EventObserverDelegate] = []
     
-    init(tableView: UITableView, events: [Event], completion: @escaping ()->()){
-        self.table = tableView
-        self.events = events
-        startObserving(completion: completion)
+    static let instance = EventObserver()
+    
+    func startObserving() {
+        FirebaseService.instance.observeEventChanges {
+            self.delegates.forEach({ delegate in delegate.update() })
+        }
     }
     
-    func startObserving(completion: @escaping ()->()) {
-        FirebaseService.instance.observeEventChanges {
-            completion()
-        }
+    func removeDelegate(id: Int){
+        guard let index = delegates.index(where: { delegate in delegate.delegateID == id }) else { return }
+        delegates.remove(at: index)
     }
     
     /// Place the realm event observer here

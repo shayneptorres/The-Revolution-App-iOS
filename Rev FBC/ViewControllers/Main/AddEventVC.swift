@@ -85,18 +85,16 @@ class AddEventVC: FormViewController {
                         let specialRow = self.form.rowBy(tag: "special") as? SwitchRow,
                         let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
                         let dateRow = self.form.rowBy(tag: "date") as? DateRow,
-                        let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
-                        let name = nameRow.value,
-                        let info = infoRow.value,
-                        let website = websiteRow.value,
-                        let address = addressRow.value,
-                        let date = dateRow.value,
-                        let startTime = startRow.value
+                        let startRow = self.form.rowBy(tag: "startTime") as? TimeRow
                         else { return }
-                    var special = false
-                    if specialRow.value != nil {
-                        special = specialRow.value!
-                    }
+                    
+                    let name = nameRow.value ?? ""
+                    let info = infoRow.value ?? ""
+                    let website = websiteRow.value ?? ""
+                    let address = addressRow.value ?? ""
+                    let date = dateRow.value ?? Date()
+                    let startTime = startRow.value ?? Date()
+                    let special = specialRow.value ?? false
                     
                     var startDate = date.startOfDay
                     startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes

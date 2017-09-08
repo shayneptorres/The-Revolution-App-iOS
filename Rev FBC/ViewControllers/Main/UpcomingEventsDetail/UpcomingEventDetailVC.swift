@@ -39,6 +39,8 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     
     var event = Variable<Event?>(nil)
     
+    var delegateID: Int?
+    
     func handleWebsiteButton(){
         if let url = event.value?.url() {
             websiteBtn.isHidden = false
@@ -85,27 +87,22 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let event = event.value else { return }
+        
+        delegateID = EventObserver.instance.delegates.count
+        EventObserver.instance.delegates.append(self)
+        
+        
         updateUI(event: event)
         findLocation(event: event, onMap: mapView)
         
         let realm = try! Realm()
         let events = realm.objects(Event.self)
         
-//        Observable.collection(from: events)
-//            .map({ evts in evts.toArray() })
-//            .map({ evts in evts.filter({ $0.id == self.event.value?.id }).first })
-//            .map({ e in e })
-//            .bind(to: self.event)
-//            .addDisposableTo(db)
-        
-        self.event.asObservable().subscribe({ [weak self] e in
-            if let evt = e.element, let realEvt = evt {
-                self?.updateUI(event: realEvt)
-            } else {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        }).addDisposableTo(db)
-        
+    }
+    
+    deinit {
+        guard let id = delegateID else { return }
+        EventObserver.instance.removeDelegate(id: id)
     }
 
     @IBAction func getDirections(_ sender: UIButton) {
@@ -141,6 +138,13 @@ class UpcomingEventDetailVC: UIViewController, MapViewManager, LocationManager {
             addEventVC.event = self.event.value
         }
     }
+}
 
-
+extension UpcomingEventDetailVC : EventObserverDelegate {
+    
+    func update() {
+        guard let event = event.value else { return }
+        if event.isInvalidated { return }
+        updateUI(event: event)
+    }
 }

@@ -35,7 +35,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             tableView.separatorStyle = .none
             
-            tableView.backgroundColor = .lightGray
+            tableView.backgroundColor = UIColor(netHex: 0x222222)
         }
     }
     

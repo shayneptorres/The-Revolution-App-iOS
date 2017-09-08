@@ -277,7 +277,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4E-6w-9br" customClass="MenuNav" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Upcoming" id="5c7-ga-NNK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o15-gg-NKQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o15-gg-NKQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -308,7 +308,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="U4E-6w-9br" kind="relationship" relationship="viewControllers" id="sSc-rh-E2s"/>
-                        <segue destination="UD8-z8-QHh" kind="relationship" relationship="viewControllers" id="dmm-0I-Nay"/>
                         <segue destination="ZvV-9W-Rwf" kind="relationship" relationship="viewControllers" id="MH4-O2-e3A"/>
                     </connections>
                 </tabBarController>
@@ -322,7 +321,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UD8-z8-QHh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sermons" id="jDd-5T-Gra"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fB4-Rp-aeW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fB4-Rp-aeW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -333,7 +332,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fzV-nL-UU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="-412"/>
+            <point key="canvasLocation" x="1209" y="-412"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="iwk-66-Cze">
@@ -352,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oO6-9h-yaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="-412"/>
+            <point key="canvasLocation" x="1873" y="-412"/>
         </scene>
         <!--Info-->
         <scene sceneID="0tk-Ai-epc">
@@ -360,7 +359,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZvV-9W-Rwf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Info" id="sxC-p1-RSN"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IkZ-b7-d6e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IkZ-b7-d6e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -502,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8y6-sy-QFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614" y="344"/>
+            <point key="canvasLocation" x="2710" y="350"/>
         </scene>
         <!--InfoVC-->
         <scene sceneID="yCm-9N-Ca6">

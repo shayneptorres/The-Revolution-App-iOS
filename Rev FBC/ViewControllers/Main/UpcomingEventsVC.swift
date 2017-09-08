@@ -15,6 +15,7 @@ class UpcomingEventsVC: SlideableMenuVC {
     var events : [Event] = []
     var selectedEvent: Event?
     var observer : EventObserver?
+    var delegateID: Int?
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -73,19 +74,25 @@ class UpcomingEventsVC: SlideableMenuVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+        self.tableView.reloadData()
+        
+        delegateID = EventObserver.instance.delegates.count
+        EventObserver.instance.delegates.append(self)
+        
         FirebaseService.instance.loginGuest().then({ loginSuccess in
             if loginSuccess {
                 FirebaseService.instance.getUpcomingEvents().then({ success in
-                    /// Start observing upcoming events
-                    self.observer = EventObserver(tableView: self.tableView, events: self.events) {
-                        self.events.removeAll()
-                        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
-                        self.tableView.reloadData()
-                    }
+                    EventObserver.instance.startObserving()
                 })
             }
         })
         
+    }
+    
+    deinit {
+        guard let id = delegateID else { return }
+        EventObserver.instance.removeDelegate(id: id)
     }
     
     
@@ -100,12 +107,20 @@ class UpcomingEventsVC: SlideableMenuVC {
 
 }
 
+extension UpcomingEventsVC : EventObserverDelegate {
+    func update() {
+        self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+        self.tableView.reloadData()
+    }
+}
+
 // MARK: - Navigation
 extension UpcomingEventsVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EventDetail" {
             guard let detailVC = segue.destination as? UpcomingEventDetailVC else { return }
             detailVC.event = Variable<Event?>(selectedEvent)
+            
         } else if segue.identifier == "AddEvent" {
         
         }
@@ -153,7 +168,14 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedEvent = events[indexPath.row]
+        let specialEvents = events.filter({ $0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        let regEvents = events.filter({ !$0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        if indexPath.section == 0 {
+            selectedEvent = specialEvents[indexPath.row]
+        } else {
+            selectedEvent = regEvents[indexPath.row]
+        }
+        
         performSegue(withIdentifier: "EventDetail", sender: self)
     }
     
