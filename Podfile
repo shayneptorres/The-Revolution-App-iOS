@@ -17,7 +17,7 @@ target 'Rev FBC' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'JVFloatLabeledTextField'
-  pod 'Eureka'
+  pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka.git', branch: 'feature/Xcode9-Swift3_2', :submodules => true
   pod 'RxSwift',    '~> 3.0'
   pod 'RxCocoa',    '~> 3.0'
   pod 'RxRealm'
