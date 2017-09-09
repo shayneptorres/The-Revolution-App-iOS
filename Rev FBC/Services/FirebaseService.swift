@@ -12,6 +12,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import SwiftDate
 
+typealias LocationDescTuple = (rev: String, fbc: String)
+
 class FirebaseService {
     
     static let instance = FirebaseService()
@@ -40,6 +42,24 @@ class FirebaseService {
                 }
                 fulfill(true)
             }
+        })
+    }
+    
+    
+    func getLocationDescriptions() -> Promise<LocationDescTuple> {
+        let ref = Database.database().reference()
+        return Promise<LocationDescTuple>(work: { fulfill, reject in
+            ref.child("mainLocationDescriptions").observeSingleEvent(of: .value, with: { snap in
+                guard let snapDict = snap.value as? NSDictionary,
+                    let revDesc = snapDict["revolution"] as? String,
+                    let fbcDesc = snapDict["fbc"] as? String else {
+                        fulfill((rev: "", fbc: ""))
+                        return
+                }
+                
+                let tup : LocationDescTuple = (rev: revDesc, fbc: fbcDesc)
+                fulfill(tup)
+            })
         })
     }
     

@@ -45,20 +45,32 @@ class InfoVC: UIViewController, LocationManager {
     var sections : [CollapsibleSection] = []
     
     var events : [Event] = []
+    
+    var revDesc = "Join us every Wednesday night for games, singing, and spending time in Gods word."
+    var fbc = "Join us on Sunday Mornings as we meet at 8:30am with our whole church body in time of singing, hearing from God's word, and fellowship with the body of Christ."
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createWednesdayNightEvent()
-        createSundayMorningEvent()
+        self.createWednesdayNightEvent()
+        self.createSundayMorningEvent()
         tableView.reloadData()
-        
+        FirebaseService.instance.getLocationDescriptions().then({ tup in
+            if tup.rev != "" {
+                self.events[0].desc = tup.rev
+            }
+            
+            if tup.fbc != "" {
+                self.events[1].desc = tup.fbc
+            }
+            
+        })
     }
     
     func createWednesdayNightEvent(){
         let revolution = Event()
         revolution.name = "The Revolution"
         revolution.address = REV_FBC_ADDRESS
-        revolution.desc = "Come join us for a night of fun, games, singing praise, and teaching God's word."
+        revolution.desc = revDesc
         
         // create a wednesday
         var wednesday = Date().startOfDay
@@ -77,7 +89,7 @@ class InfoVC: UIViewController, LocationManager {
         let sundayFellowship = Event()
         sundayFellowship.name = "Sunday Morning Fellowship"
         sundayFellowship.address = FBC_ADDRESS
-        sundayFellowship.desc = "Join us as we meet with our whole church for a time of praise, teaching, and community. Stick around after for our high school meeting."
+        sundayFellowship.desc = fbc
         
         // create a wednesday
         var sunday = Date().startOfDay
@@ -134,6 +146,7 @@ extension InfoVC : UITableViewDelegate, UITableViewDataSource {
             let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.locationInfoCell.rawValue) as! LocationInfoCell
             
             infoCell.info.text = events[indexPath.section].desc
+            
             cell = infoCell
         default:
             break
