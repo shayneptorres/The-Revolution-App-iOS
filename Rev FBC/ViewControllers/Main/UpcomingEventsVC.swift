@@ -73,7 +73,7 @@ class UpcomingEventsVC: SlideableMenuVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
         self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
         self.tableView.reloadData()
         
@@ -192,6 +192,6 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 30
     }
 }

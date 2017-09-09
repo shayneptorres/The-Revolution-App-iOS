@@ -138,4 +138,13 @@ class AdminLoginVC: UIViewController {
         }).addDisposableTo(disposeBag)
     }
     
+    @IBAction func signUpBtnWasPressed(_ sender: UIButton) {
+        let signUpAlert = UIAlertController(title: "Create admin account?", message: "To gain access to admin features you must be an admin for Faith Bible Church's High School Ministry 'The Revolution.' To gain admin access, please contact The high school pastor Morgan Maitland.", preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        signUpAlert.addAction(dismissAction)
+        self.present(signUpAlert, animated: true, completion: nil)
+    }
+    
+    
 }

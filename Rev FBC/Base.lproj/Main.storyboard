@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jdy-Nm-h93">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jdy-Nm-h93">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -126,7 +126,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="167"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaB-Lc-BMh">
-                                <rect key="frame" x="20" y="211" width="335" height="333.5"/>
+                                <rect key="frame" x="20" y="211" width="335" height="372"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epf-Fn-BTV">
                                         <rect key="frame" x="20" y="20" width="295" height="33"/>
@@ -185,7 +185,6 @@
                                             <color key="titleColor" red="0.94117647059999998" green="0.78823529410000004" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="getDirections:" destination="mcf-rd-ls6" eventType="touchUpInside" id="JQR-LK-lyl"/>
                                             <action selector="goToWebsite:" destination="mcf-rd-ls6" eventType="touchUpInside" id="Zg6-Xv-wvi"/>
                                         </connections>
                                     </button>
@@ -235,11 +234,11 @@
                         <constraints>
                             <constraint firstItem="bEf-bo-RcC" firstAttribute="top" secondItem="pDA-Gs-XWB" secondAttribute="bottom" id="26I-DN-HGg"/>
                             <constraint firstItem="bEf-bo-RcC" firstAttribute="height" secondItem="eWC-C2-yKP" secondAttribute="height" multiplier="0.25" id="2jv-1l-t0Y"/>
-                            <constraint firstItem="oaB-Lc-BMh" firstAttribute="height" secondItem="eWC-C2-yKP" secondAttribute="height" multiplier="0.5" priority="750" id="APj-4Y-Hkn"/>
                             <constraint firstItem="oaB-Lc-BMh" firstAttribute="leading" secondItem="eWC-C2-yKP" secondAttribute="leading" constant="20" id="EBe-My-DvJ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="IgG-Fm-nkj" secondAttribute="bottom" constant="20" id="LFw-Wq-aoH"/>
                             <constraint firstAttribute="trailing" secondItem="bEf-bo-RcC" secondAttribute="trailing" id="NJC-yV-j6N"/>
                             <constraint firstItem="oaB-Lc-BMh" firstAttribute="top" secondItem="bEf-bo-RcC" secondAttribute="bottom" constant="-20" id="P2U-N2-gq2"/>
+                            <constraint firstItem="IgG-Fm-nkj" firstAttribute="top" secondItem="oaB-Lc-BMh" secondAttribute="bottom" constant="20" id="bIL-oX-rZf"/>
                             <constraint firstAttribute="trailing" secondItem="oaB-Lc-BMh" secondAttribute="trailing" constant="20" id="cVa-6c-VIQ"/>
                             <constraint firstItem="IgG-Fm-nkj" firstAttribute="leading" secondItem="eWC-C2-yKP" secondAttribute="leadingMargin" id="etP-VC-cl5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IgG-Fm-nkj" secondAttribute="trailing" id="ts8-qK-hQ6"/>
@@ -275,7 +274,7 @@
         <scene sceneID="3yO-n4-kvb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4E-6w-9br" customClass="MenuNav" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Upcoming" id="5c7-ga-NNK"/>
+                    <tabBarItem key="tabBarItem" title="Upcoming" image="upcomingEventsTabIcon" id="5c7-ga-NNK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o15-gg-NKQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -357,7 +356,7 @@
         <scene sceneID="0tk-Ai-epc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZvV-9W-Rwf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Info" id="sxC-p1-RSN"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="infoTabIcon" id="sxC-p1-RSN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IkZ-b7-d6e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -540,7 +539,9 @@
     </scenes>
     <resources>
         <image name="addEventIcon" width="37" height="34"/>
+        <image name="infoTabIcon" width="32" height="30"/>
         <image name="logoDarkCircle" width="550" height="550"/>
+        <image name="upcomingEventsTabIcon" width="38" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dz4-A5-7Qo"/>

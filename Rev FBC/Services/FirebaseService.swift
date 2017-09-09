@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import SwiftDate
 
 class FirebaseService {
     
@@ -72,7 +73,11 @@ class FirebaseService {
                             let isSpecial = eventDict["isSpecial"] as? Bool,
                             let dateStr = eventDict["startDate"] as? String {
                             
-                            idsToKeep.append(key)
+                            if let date = dateFormatter.date(from: dateStr) {
+                                if date > Date() + 2.hours {
+                                    idsToKeep.append(key)
+                                }
+                            }
                             
                             /// If we already have this event saved then update the event
                             var e = Event.getAll().filter({ $0.id == key }).first
@@ -135,7 +140,12 @@ class FirebaseService {
                     let isSpecial = eventDict["isSpecial"] as? Bool,
                     let dateStr = eventDict["startDate"] as? String {
                     
-                    idsToKeep.append(key)
+
+                    if let date = dateFormatter.date(from: dateStr) {
+                        if date > Date() + 2.hours {
+                            idsToKeep.append(key)
+                        }
+                    }
                     
                     /// If we already have this event saved then update the event
                     var e = Event.getAll().filter({ $0.id == key }).first
