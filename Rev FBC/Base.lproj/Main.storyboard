@@ -276,7 +276,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4E-6w-9br" customClass="MenuNav" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Upcoming" image="upcomingEventsTabIcon" id="5c7-ga-NNK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o15-gg-NKQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o15-gg-NKQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -320,7 +320,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UD8-z8-QHh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sermons" id="jDd-5T-Gra"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fB4-Rp-aeW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fB4-Rp-aeW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -358,7 +358,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZvV-9W-Rwf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Info" image="infoTabIcon" id="sxC-p1-RSN"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IkZ-b7-d6e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IkZ-b7-d6e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -535,6 +535,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zjr-XI-o6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1784.8" y="349.47526236881561"/>
+        </scene>
+        <!--Event DetailVC-->
+        <scene sceneID="xJ3-vT-uvI">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="n7K-bl-an5" customClass="EventDetailVC" customModule="Rev_FBC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yxL-0v-vo4"/>
+                        <viewControllerLayoutGuide type="bottom" id="cEw-61-Qcd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n4Y-rI-PXK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="92y-EL-90T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="92y-EL-90T" secondAttribute="trailing" id="0Iq-6d-EyI"/>
+                            <constraint firstItem="cEw-61-Qcd" firstAttribute="top" secondItem="92y-EL-90T" secondAttribute="bottom" id="P4A-Za-X8O"/>
+                            <constraint firstItem="92y-EL-90T" firstAttribute="leading" secondItem="n4Y-rI-PXK" secondAttribute="leading" id="ksK-F7-5t4"/>
+                            <constraint firstItem="92y-EL-90T" firstAttribute="top" secondItem="n4Y-rI-PXK" secondAttribute="top" id="y1X-gy-ixJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3yU-ee-wO6">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="vJj-08-kyX">
+                            <color key="tintColor" red="0.94155591729999999" green="0.78953391309999998" blue="0.18825846909999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editEvent:" destination="n7K-bl-an5" id="RRz-rJ-U6q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editBtn" destination="vJj-08-kyX" id="EvY-ZI-4b0"/>
+                        <outlet property="table" destination="92y-EL-90T" id="uGo-TH-oOs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynJ-WH-A0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3324" y="-1121.2893553223389"/>
         </scene>
     </scenes>
     <resources>

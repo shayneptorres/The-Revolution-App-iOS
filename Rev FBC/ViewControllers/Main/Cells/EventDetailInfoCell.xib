@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="KGk-i7-Jjw" customClass="EventDetailInfoCell" customModule="Rev_FBC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="121.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7NL-0p-AjA">
+                        <rect key="frame" x="8" y="4" width="304" height="113.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09O-pW-Zxu">
+                                <rect key="frame" x="8" y="4" width="52" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVt-9J-Yb9">
+                                <rect key="frame" x="16" y="29" width="280" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Cd-oP-HzY">
+                                <rect key="frame" x="68" y="1" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.9565282464" green="0.83614188430000003" blue="0.39482662080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uVt-9J-Yb9" secondAttribute="bottom" constant="8" id="J4o-jp-xxt"/>
+                            <constraint firstItem="09O-pW-Zxu" firstAttribute="top" secondItem="7NL-0p-AjA" secondAttribute="top" constant="4" id="PPP-y2-bQ1"/>
+                            <constraint firstItem="09O-pW-Zxu" firstAttribute="leading" secondItem="7NL-0p-AjA" secondAttribute="leading" constant="8" id="Reb-V5-Asy"/>
+                            <constraint firstAttribute="trailing" secondItem="uVt-9J-Yb9" secondAttribute="trailing" constant="8" id="S1l-Cf-WlJ"/>
+                            <constraint firstItem="2Cd-oP-HzY" firstAttribute="leading" secondItem="09O-pW-Zxu" secondAttribute="trailing" constant="8" id="SUP-i3-eyU"/>
+                            <constraint firstItem="2Cd-oP-HzY" firstAttribute="centerY" secondItem="09O-pW-Zxu" secondAttribute="centerY" id="Xas-eb-ikK"/>
+                            <constraint firstItem="uVt-9J-Yb9" firstAttribute="top" secondItem="09O-pW-Zxu" secondAttribute="bottom" id="awP-0p-y5V"/>
+                            <constraint firstItem="uVt-9J-Yb9" firstAttribute="leading" secondItem="7NL-0p-AjA" secondAttribute="leading" constant="16" id="uPV-6l-4EL"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="7NL-0p-AjA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="849-wY-tvB"/>
+                    <constraint firstAttribute="trailing" secondItem="7NL-0p-AjA" secondAttribute="trailing" constant="8" id="O5Y-rs-zpy"/>
+                    <constraint firstItem="7NL-0p-AjA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="TuM-7x-4C7"/>
+                    <constraint firstAttribute="bottom" secondItem="7NL-0p-AjA" secondAttribute="bottom" constant="4" id="sl2-fa-U4Z"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="actionBtn" destination="2Cd-oP-HzY" id="1SD-pK-HC6"/>
+                <outlet property="containerView" destination="7NL-0p-AjA" id="o0K-CK-MXB"/>
+                <outlet property="whenDescLabel" destination="uVt-9J-Yb9" id="m1T-WV-MXR"/>
+            </connections>
+            <point key="canvasLocation" x="67" y="15"/>
+        </tableViewCell>
+    </objects>
+</document>
