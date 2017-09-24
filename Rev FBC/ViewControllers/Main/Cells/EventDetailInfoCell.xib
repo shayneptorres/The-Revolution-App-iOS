@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
+            <string>Avenir-Black</string>
             <string>Avenir-Book</string>
         </array>
     </customFonts>
@@ -24,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7NL-0p-AjA">
-                        <rect key="frame" x="8" y="4" width="304" height="113.5"/>
+                        <rect key="frame" x="8" y="0.0" width="304" height="121.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09O-pW-Zxu">
                                 <rect key="frame" x="8" y="4" width="52" height="25"/>
@@ -32,7 +33,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVt-9J-Yb9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVt-9J-Yb9">
                                 <rect key="frame" x="16" y="29" width="280" height="19.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -43,6 +44,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="0.9565282464" green="0.83614188430000003" blue="0.39482662080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionBtnWasPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xko-gn-z4b"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,14 +66,15 @@
                 <constraints>
                     <constraint firstItem="7NL-0p-AjA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="849-wY-tvB"/>
                     <constraint firstAttribute="trailing" secondItem="7NL-0p-AjA" secondAttribute="trailing" constant="8" id="O5Y-rs-zpy"/>
-                    <constraint firstItem="7NL-0p-AjA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="TuM-7x-4C7"/>
-                    <constraint firstAttribute="bottom" secondItem="7NL-0p-AjA" secondAttribute="bottom" constant="4" id="sl2-fa-U4Z"/>
+                    <constraint firstItem="7NL-0p-AjA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TuM-7x-4C7"/>
+                    <constraint firstAttribute="bottom" secondItem="7NL-0p-AjA" secondAttribute="bottom" id="sl2-fa-U4Z"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionBtn" destination="2Cd-oP-HzY" id="1SD-pK-HC6"/>
+                <outlet property="categoryLabel" destination="09O-pW-Zxu" id="8xl-Dt-bJf"/>
                 <outlet property="containerView" destination="7NL-0p-AjA" id="o0K-CK-MXB"/>
-                <outlet property="whenDescLabel" destination="uVt-9J-Yb9" id="m1T-WV-MXR"/>
+                <outlet property="descLabel" destination="uVt-9J-Yb9" id="Jtr-1e-4sA"/>
             </connections>
             <point key="canvasLocation" x="67" y="15"/>
         </tableViewCell>

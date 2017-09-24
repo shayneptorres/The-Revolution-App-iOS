@@ -11,9 +11,11 @@ import MapKit
 
 class EventDetailMapCell: UITableViewCell, MapViewManager, LocationManager {
     
+    var cellWidth = 0
     
     @IBOutlet weak var map: MKMapView!
-
+    
+    @IBOutlet weak var overlayView: UIView!
     
     var event : Event? {
         didSet {

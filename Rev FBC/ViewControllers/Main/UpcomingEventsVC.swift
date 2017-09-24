@@ -118,8 +118,8 @@ extension UpcomingEventsVC : EventObserverDelegate {
 extension UpcomingEventsVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EventDetail" {
-            guard let detailVC = segue.destination as? UpcomingEventDetailVC else { return }
-            detailVC.event = Variable<Event?>(selectedEvent)
+            guard let detailVC = segue.destination as? EventDetailVC else { return }
+            detailVC.event = Variable<Event?>(selectedEvent).value
             
         } else if segue.identifier == "AddEvent" {
         

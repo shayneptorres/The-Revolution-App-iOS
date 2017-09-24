@@ -12,7 +12,7 @@ class EventDetailTitleCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView! {
         didSet {
-            containerView.applyShadow()
+            
         }
     }
     

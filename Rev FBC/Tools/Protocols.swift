@@ -13,6 +13,19 @@ import CoreLocation
 
 // MARK: - Locations
 
+protocol WebSiteManager {
+}
+
+// Protocol for opening the safari app with the given url
+// Used to open safari to the selected events site
+extension WebSiteManager {
+    func showWebSite(url: URL?) {
+        if let url = url {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
+}
+
 protocol LocationManager {
     
 }
@@ -36,7 +49,7 @@ extension LocationManager  {
         return promise
     }
     
-    func directions(event: Event) {
+    func directions(event: Event) -> Void {
         getCoordinateFromAddress(address: event.address).then({ coordinate in
             guard let coord = coordinate else { return }
             

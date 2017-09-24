@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jdy-Nm-h93">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jdy-Nm-h93">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -13,6 +13,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
+            <string>Avenir-Black</string>
             <string>Avenir-Book</string>
         </array>
     </customFonts>
@@ -102,8 +103,8 @@
                     <connections>
                         <outlet property="addEventBtn" destination="qjq-CL-h1C" id="PyA-Oz-YjT"/>
                         <outlet property="tableView" destination="RYt-wZ-DLu" id="VaD-u4-yKO"/>
-                        <segue destination="mcf-rd-ls6" kind="show" identifier="EventDetail" id="eNf-5s-ycn"/>
                         <segue destination="t4o-9d-LEE" kind="show" identifier="AddEvent" id="d8Y-nd-4Jg"/>
+                        <segue destination="n7K-bl-an5" kind="show" identifier="EventDetail" id="MHW-gE-n8p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,10 +124,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bEf-bo-RcC">
-                                <rect key="frame" x="0.0" y="64" width="375" height="167"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="167"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaB-Lc-BMh">
-                                <rect key="frame" x="20" y="211" width="335" height="372"/>
+                                <rect key="frame" x="20" y="167" width="335" height="416"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epf-Fn-BTV">
                                         <rect key="frame" x="20" y="20" width="295" height="33"/>
@@ -268,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8f-Yv-fRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2509.5999999999999" y="-1121.2893553223389"/>
+            <point key="canvasLocation" x="2606" y="-734"/>
         </scene>
         <!--Upcoming-->
         <scene sceneID="3yO-n4-kvb">
@@ -277,7 +278,7 @@
                     <tabBarItem key="tabBarItem" title="Upcoming" image="upcomingEventsTabIcon" id="5c7-ga-NNK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o15-gg-NKQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -321,7 +322,7 @@
                     <tabBarItem key="tabBarItem" title="Sermons" id="jDd-5T-Gra"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fB4-Rp-aeW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -359,7 +360,7 @@
                     <tabBarItem key="tabBarItem" title="Info" image="infoTabIcon" id="sxC-p1-RSN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IkZ-b7-d6e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -550,7 +551,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="92y-EL-90T">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -564,13 +565,9 @@
                     <navigationItem key="navigationItem" id="3yU-ee-wO6">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="vJj-08-kyX">
                             <color key="tintColor" red="0.94155591729999999" green="0.78953391309999998" blue="0.18825846909999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="editEvent:" destination="n7K-bl-an5" id="RRz-rJ-U6q"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editBtn" destination="vJj-08-kyX" id="EvY-ZI-4b0"/>
                         <outlet property="table" destination="92y-EL-90T" id="uGo-TH-oOs"/>
                     </connections>
                 </viewController>
@@ -586,6 +583,6 @@
         <image name="upcomingEventsTabIcon" width="38" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dz4-A5-7Qo"/>
+        <segue reference="d8Y-nd-4Jg"/>
     </inferredMetricsTieBreakers>
 </document>

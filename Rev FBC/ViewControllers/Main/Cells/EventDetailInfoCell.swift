@@ -11,10 +11,12 @@ import UIKit
 
 
 class EventDetailInfoCell: UITableViewCell {
-
+    
     @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var whenDescLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    @IBOutlet weak var descLabel: UILabel!
     
     @IBOutlet weak var actionBtn: UIButton!
     

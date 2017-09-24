@@ -7,8 +7,26 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class EventDetailVC: UIViewController {
+struct EventDetailVM : WebSiteManager, LocationManager {
+    
+    var event : Event?
+    
+    func webSiteBtnWasTapped() {
+        guard let event = event else { return }
+        showWebSite(url: event.url())
+    }
+    
+    func directionsBtnWasTapped() {
+        guard let event = event else { return }
+        directions(event: event)
+    }
+    
+}
+
+class EventDetailVC: UIViewController, LocationManager {
     
     @IBOutlet weak var table: UITableView! {
         didSet {
@@ -41,14 +59,21 @@ class EventDetailVC: UIViewController {
         }
     }
     
+    var viewModel : EventDetailVM!
+    
+    var disposeBag = DisposeBag()
+    
     func updateUI(event: Event) {
-        table.reloadData()
+        guard let tv = table as? UITableView else { return }
+        tv.reloadData()
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        table.reloadData()
+        
+        viewModel = EventDetailVM(event: event)
     }
 
 }
@@ -62,7 +87,7 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if AdminService.instance.getUserCredentials() == nil {
             // If user is not a logged in admin
-            return 0
+            return 5
         } else {
             // If user is a logged in admin
             return 5
@@ -70,11 +95,66 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        var cell = UITableViewCell()
+        guard let event = event, let vm = viewModel else { return UITableViewCell() }
         switch indexPath.row {
-        case 0:
+        case 0: // Initial Map View Cell
             let mapCell = table.dequeueReusableCell(withIdentifier: CellID.eventMapCell.rawValue) as! EventDetailMapCell
+            mapCell.selectionStyle = .none
             
+            let tableWidth = table.bounds.width
+            mapCell.overlayView.roundCornersForTableViewCell(corners: [.topLeft,.topRight],
+                                              radii: 20,
+                                              tableViewWidth: tableWidth,
+                                              contentSpacing: 16)
+            
+            cell = mapCell
+            
+        case 1: // Title cell for event
+            let titleCell = tableView.dequeueReusableCell(withIdentifier: CellID.eventTitleCell.rawValue) as! EventDetailTitleCell
+            titleCell.eventTitleLabel.text = event.name
+            titleCell.selectionStyle = .none
+            cell = titleCell
+            
+        case 2: // When: Details about the time
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.eventInfoCell.rawValue) as! EventDetailInfoCell
+            infoCell.categoryLabel.text = "When:"
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEE, MMM dd 'at' h:mm a"
+            infoCell.descLabel.text = formatter.string(from: event.startDate)
+            infoCell.actionBtn.isHidden = true
+            infoCell.selectionStyle = .none
+            cell = infoCell
+            
+        case 3: // What: Details about the event
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.eventInfoCell.rawValue) as! EventDetailInfoCell
+            infoCell.categoryLabel.text = "What:"
+            infoCell.actionBtn.setTitle("Website", for: .normal)
+            infoCell.descLabel.text = event.desc
+            infoCell.selectionStyle = .none
+            infoCell.actionBtn.rx
+                .tap
+                .subscribe(onNext:{
+                    vm.webSiteBtnWasTapped()
+                }).addDisposableTo(disposeBag)
+            
+            cell = infoCell
+            
+        case 4: // Where: Details about where the event is at
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: CellID.eventInfoCell.rawValue) as! EventDetailInfoCell
+            infoCell.categoryLabel.text = "Where:"
+            infoCell.actionBtn.setTitle("Directions", for: .normal)
+            infoCell.descLabel.text = event.address
+            infoCell.actionBtn.isHidden = false
+            infoCell.selectionStyle = .none
+            infoCell.actionBtn.rx
+                .tap
+                .subscribe(onNext: {
+                    vm.directionsBtnWasTapped()
+                }).addDisposableTo(disposeBag)
+            
+            
+            cell = infoCell
             
         default:
             return UITableViewCell()

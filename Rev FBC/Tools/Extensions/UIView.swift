@@ -29,4 +29,31 @@ extension UIView {
         self.layer.shadowOpacity = 0.3
         self.layer.masksToBounds = false
     }
+    
+    func roundCorners(corners: UIRectCorner, radii: CGFloat) {
+        
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radii, height: radii))
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        self.layer.mask = maskLayer
+    }
+    
+    func roundCornersForTableViewCell(corners: UIRectCorner, radii: CGFloat, tableViewWidth: CGFloat, contentSpacing: CGFloat) {
+        let viewBounds = self.bounds
+        let rect = CGRect(x: viewBounds.minX,
+                          y: viewBounds.minY,
+                          width: tableViewWidth - contentSpacing, // THis magic number is the size of the space between the card in the table view to the tableviews edges
+            height: viewBounds.height)
+        
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radii, height: radii))
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        self.layer.mask = maskLayer
+    }
 }
