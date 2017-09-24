@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Instantiate the RealmMigrationManager singleton in order to execute any needed migrations
+        _ = RealmMigrationManager()
+        
+        
         FirebaseApp.configure()
         UITabBar.appearance().tintColor = UIColor(netHex: 0xF0C930)
         
