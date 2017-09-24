@@ -14,12 +14,20 @@ class RealmMigrationManager {
     
     static let instance = RealmMigrationManager()
     
-    private let schemaVersion : UInt64 = 0 // This must be updated everytime there is a new migration
+    private let schemaVersion : UInt64 = 1 // This must be updated everytime there is a new migration
     
     init() {
         let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, oldSchemaVersion in
             
+            if oldSchemaVersion < 1 {
+                let eventMigration = EventMigrations.add_endDate_locationName_signUpUrl
+                eventMigration.migrationBlock(migration: migration)
+            }
+            
         })
+        
+        // This needs to be called so that realm will migrate the data
+        Realm.Configuration.defaultConfiguration = config
     }
     
 }

@@ -63,6 +63,7 @@
 		B8EF1BDA1F3842FA0071BC20 /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EF1BD91F3842FA0071BC20 /* AddressVC.swift */; };
 		B8EF1BDC1F3843EE0071BC20 /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EF1BDB1F3843EE0071BC20 /* AppButton.swift */; };
 		B8F2B2391F78615D004209F1 /* RealmMigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2B2381F78615D004209F1 /* RealmMigrationManager.swift */; };
+		B8F2B23D1F7864E6004209F1 /* EventMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2B23C1F7864E6004209F1 /* EventMigrations.swift */; };
 		C52FD27E4F3F897AE3830226 /* Pods_Rev_FBCUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8939EDCD158BC4D70E63D7ED /* Pods_Rev_FBCUITests.framework */; };
 		EDE9AE7D0A2EFA2D3D904F36 /* Pods_Rev_FBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E0D739FAFB448709A085FC /* Pods_Rev_FBC.framework */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,7 @@
 		B8EF1BD91F3842FA0071BC20 /* AddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
 		B8EF1BDB1F3843EE0071BC20 /* AppButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		B8F2B2381F78615D004209F1 /* RealmMigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationManager.swift; sourceTree = "<group>"; };
+		B8F2B23C1F7864E6004209F1 /* EventMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMigrations.swift; sourceTree = "<group>"; };
 		F32CB29A36246C8A38A946DE /* Pods-Rev FBCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev FBCTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rev FBCTests/Pods-Rev FBCTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,17 +414,10 @@
 		B8F2B2361F786119004209F1 /* Migrations */ = {
 			isa = PBXGroup;
 			children = (
-				B8F2B2371F786130004209F1 /* Events */,
 				B8F2B2381F78615D004209F1 /* RealmMigrationManager.swift */,
+				B8F2B23C1F7864E6004209F1 /* EventMigrations.swift */,
 			);
 			path = Migrations;
-			sourceTree = "<group>";
-		};
-		B8F2B2371F786130004209F1 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Events;
 			sourceTree = "<group>";
 		};
 		BA184964551B7A0F6325984C /* Frameworks */ = {
@@ -786,6 +781,7 @@
 				B8CFB63D1F37B4D800E906BD /* MenuNav.swift in Sources */,
 				B8B0C3B81F43F39100842C59 /* FormTextField.swift in Sources */,
 				B8F2B2391F78615D004209F1 /* RealmMigrationManager.swift in Sources */,
+				B8F2B23D1F7864E6004209F1 /* EventMigrations.swift in Sources */,
 				B821415E1F3E9F9F0095758C /* LocationMapCell.swift in Sources */,
 				B8B0C3B31F43F18100842C59 /* FormCell.swift in Sources */,
 				B89C1BDA1F3791F70099B567 /* Enums.swift in Sources */,

@@ -22,6 +22,11 @@ class Event : Object, RealmManagable, URLConverter {
     dynamic var urlString = String()
     dynamic var isSpecial = Bool()
     
+    // SchemaVersion 1
+    dynamic var endDate = Date()
+    dynamic var signUpUrl = String()
+    dynamic var locationName = String()
+    
     typealias RealmObject = Event
     
     override static func primaryKey() -> String? {
