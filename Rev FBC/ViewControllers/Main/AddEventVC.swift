@@ -36,12 +36,16 @@ class AddEventVC: FormViewController {
                 row.title = "Name:"
                 row.tag = "name"
                 row.value = event?.name
-                
             }
             <<< TextRow() { row in
                 row.title = "Website:"
                 row.tag = "website"
                 row.value = event?.urlString
+            }
+            <<< TextRow() { row in
+                row.title = "Sign up url:"
+                row.tag = "signUp"
+                row.value = event?.signUpUrl
             }
             <<< TextAreaRow() { row in
                 row.placeholder = "Info:"
@@ -55,6 +59,11 @@ class AddEventVC: FormViewController {
             }
             
             +++ Section("Where")
+            <<< TextRow() { row in
+                row.title = "Location name:"
+                row.tag = "locationName"
+                row.value = event?.locationName
+            }
             <<< TextAreaRow() { row in
                 row.placeholder = "Address:"
                 row.tag = "address"
@@ -72,6 +81,11 @@ class AddEventVC: FormViewController {
                 row.tag = "startTime"
                 row.value = event?.startDate
             }
+            <<< TimeRow() { row in
+                row.title = "Ends:"
+                row.tag = "endTime"
+                row.value = event?.endDate
+            }
             
             +++ Section("")
             <<< ButtonRow() { row in
@@ -82,31 +96,42 @@ class AddEventVC: FormViewController {
                         let nameRow = self.form.rowBy(tag: "name") as? TextRow,
                         let infoRow = self.form.rowBy(tag: "info") as? TextAreaRow,
                         let websiteRow = self.form.rowBy(tag: "website") as? TextRow,
+                        let signUpRow = self.form.rowBy(tag: "signUp") as? TextRow,
                         let specialRow = self.form.rowBy(tag: "special") as? SwitchRow,
+                        let locationNameRow = self.form.rowBy(tag: "locationName") as? TextRow,
                         let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
                         let dateRow = self.form.rowBy(tag: "date") as? DateRow,
-                        let startRow = self.form.rowBy(tag: "startTime") as? TimeRow
+                        let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
+                        let endRow = self.form.rowBy(tag: "endTime") as? TimeRow
                         else { return }
                     
                     let name = nameRow.value ?? ""
                     let info = infoRow.value ?? ""
                     let website = websiteRow.value ?? ""
+                    let signUp = signUpRow.value ?? ""
+                    let locationName = locationNameRow.value ?? ""
                     let address = addressRow.value ?? ""
                     let date = dateRow.value ?? Date()
                     let startTime = startRow.value ?? Date()
+                    let endTime = endRow.value ?? Date()
                     let special = specialRow.value ?? false
                     
                     var startDate = date.startOfDay
                     startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
-                    print(startDate)
+                    
+                    var endDate = date.startOfDay
+                    endDate = endDate + Int(endTime.hour).hours + Int(endTime.minute).minutes
                     
                     let event = Event()
                     event.name = name
                     event.isSpecial = special
                     event.urlString = website
+                    event.signUpUrl = signUp
                     event.desc = info
+                    event.locationName = locationName
                     event.address = address
                     event.startDate = startDate
+                    event.endDate = endDate
                     
                     if self.event != nil {
                         event.id = (self.event?.id)!

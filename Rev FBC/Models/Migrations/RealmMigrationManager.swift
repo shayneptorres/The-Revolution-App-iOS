@@ -17,6 +17,7 @@ class RealmMigrationManager {
     private let schemaVersion : UInt64 = 1 // This must be updated everytime there is a new migration
     
     init() {
+        // When this singleton is instantiated, configure the new schema and run the provided migrations    
         let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, oldSchemaVersion in
             
             if oldSchemaVersion < 1 {

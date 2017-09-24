@@ -64,6 +64,8 @@
 		B8EF1BDC1F3843EE0071BC20 /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EF1BDB1F3843EE0071BC20 /* AppButton.swift */; };
 		B8F2B2391F78615D004209F1 /* RealmMigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2B2381F78615D004209F1 /* RealmMigrationManager.swift */; };
 		B8F2B23D1F7864E6004209F1 /* EventMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2B23C1F7864E6004209F1 /* EventMigrations.swift */; };
+		B8F2B2401F7871E8004209F1 /* EventDetailActionBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2B23E1F7871E8004209F1 /* EventDetailActionBtnCell.swift */; };
+		B8F2B2411F7871E8004209F1 /* EventDetailActionBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F2B23F1F7871E8004209F1 /* EventDetailActionBtnCell.xib */; };
 		C52FD27E4F3F897AE3830226 /* Pods_Rev_FBCUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8939EDCD158BC4D70E63D7ED /* Pods_Rev_FBCUITests.framework */; };
 		EDE9AE7D0A2EFA2D3D904F36 /* Pods_Rev_FBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E0D739FAFB448709A085FC /* Pods_Rev_FBC.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +159,8 @@
 		B8EF1BDB1F3843EE0071BC20 /* AppButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		B8F2B2381F78615D004209F1 /* RealmMigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationManager.swift; sourceTree = "<group>"; };
 		B8F2B23C1F7864E6004209F1 /* EventMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMigrations.swift; sourceTree = "<group>"; };
+		B8F2B23E1F7871E8004209F1 /* EventDetailActionBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailActionBtnCell.swift; sourceTree = "<group>"; };
+		B8F2B23F1F7871E8004209F1 /* EventDetailActionBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailActionBtnCell.xib; sourceTree = "<group>"; };
 		F32CB29A36246C8A38A946DE /* Pods-Rev FBCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev FBCTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rev FBCTests/Pods-Rev FBCTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,6 +398,8 @@
 				B848F25B1F70935A00C001BE /* EventDetailInfoCell.xib */,
 				B82509081F70F724003814FB /* EventDetailMapCell.swift */,
 				B82509091F70F724003814FB /* EventDetailMapCell.xib */,
+				B8F2B23E1F7871E8004209F1 /* EventDetailActionBtnCell.swift */,
+				B8F2B23F1F7871E8004209F1 /* EventDetailActionBtnCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				B889F7081F40A064006DB561 /* GoogleService-Info.plist in Resources */,
 				B89C1BD21F3790680099B567 /* UpcomingEventCell.xib in Resources */,
 				B8914DE51F35A97600F51CBD /* Main.storyboard in Resources */,
+				B8F2B2411F7871E8004209F1 /* EventDetailActionBtnCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +783,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8F2B2401F7871E8004209F1 /* EventDetailActionBtnCell.swift in Sources */,
 				B89C1BD61F3790DD0099B567 /* RealmManagable.swift in Sources */,
 				B8BF09E71F3644E600172662 /* AppTabBarController.swift in Sources */,
 				B8CFB63D1F37B4D800E906BD /* MenuNav.swift in Sources */,
