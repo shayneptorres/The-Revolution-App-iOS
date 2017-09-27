@@ -46,11 +46,28 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
+    
+    func didTap(){
+        guard
+            let upcomingVC = parent as? UpcomingEventsVC
+            else { return }
+        
+        upcomingVC.closeMenu()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard
+            let upcomingVC = parent as? UpcomingEventsVC
+            else { return }
+        upcomingVC.view.removeGestureRecognizer(tap)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,8 +80,18 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    var tap = UITapGestureRecognizer()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        guard
+            let upcomingVC = parent as? UpcomingEventsVC
+            else { return }
+        
+        // Do any additional setup after loading the view.
+        tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        upcomingVC.view.addGestureRecognizer(tap)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

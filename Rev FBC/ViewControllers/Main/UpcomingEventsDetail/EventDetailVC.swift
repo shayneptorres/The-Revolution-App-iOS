@@ -26,7 +26,7 @@ struct EventDetailVM : WebSiteManager, LocationManager {
     
 }
 
-class EventDetailVC: UIViewController, LocationManager {
+class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
     
     @IBOutlet weak var table: UITableView! {
         didSet {
@@ -68,15 +68,34 @@ class EventDetailVC: UIViewController, LocationManager {
     
     func updateUI(event: Event) {
         guard let tv = table as? UITableView else { return }
+        navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
         tv.reloadData()
     }
     
+    var delegateID : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         table.reloadData()
         
         viewModel = EventDetailVM(event: event)
+        navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
+        
+        
+        
+//        delegateID = EventObserver.instance.delegates.count
+//        EventObserver.instance.delegates.append(self)
+    }
+    
+    func update() {
+//        table.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditEvent" {
+            let addEventVC = segue.destination as! AddEventVC
+            addEventVC.event = self.event
+        }
     }
 
 }
@@ -177,9 +196,19 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
                         vm.directionsBtnWasTapped()
                     }).addDisposableTo(disposeBag)
                 
+                infoCell.bottonContraint.constant = 50
+                
+                UIView.animate(withDuration: 0.1, animations: {
+                    infoCell.layoutIfNeeded()
+                    infoCell.containerView.roundCornersForTableViewCell(corners: [.bottomRight,.bottomLeft],
+                                                                        radii: 10,
+                                                                        tableViewWidth: self.table.bounds.width,
+                                                                        contentSpacing: 16)
+                    
+                })
+                
                 
                 cell = infoCell
-                
             default:
                 return UITableViewCell()
             }
@@ -197,6 +226,10 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layoutSubviews()
     }
     
 }

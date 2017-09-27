@@ -44,14 +44,11 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="0.9565282464" green="0.83614188430000003" blue="0.39482662080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="actionBtnWasPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xko-gn-z4b"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uVt-9J-Yb9" secondAttribute="bottom" constant="8" id="J4o-jp-xxt"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uVt-9J-Yb9" secondAttribute="bottom" constant="16" id="J4o-jp-xxt"/>
                             <constraint firstItem="09O-pW-Zxu" firstAttribute="top" secondItem="7NL-0p-AjA" secondAttribute="top" constant="4" id="PPP-y2-bQ1"/>
                             <constraint firstItem="09O-pW-Zxu" firstAttribute="leading" secondItem="7NL-0p-AjA" secondAttribute="leading" constant="8" id="Reb-V5-Asy"/>
                             <constraint firstAttribute="trailing" secondItem="uVt-9J-Yb9" secondAttribute="trailing" constant="8" id="S1l-Cf-WlJ"/>
@@ -72,6 +69,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionBtn" destination="2Cd-oP-HzY" id="1SD-pK-HC6"/>
+                <outlet property="bottonContraint" destination="sl2-fa-U4Z" id="KdZ-as-ngJ"/>
                 <outlet property="categoryLabel" destination="09O-pW-Zxu" id="8xl-Dt-bJf"/>
                 <outlet property="containerView" destination="7NL-0p-AjA" id="o0K-CK-MXB"/>
                 <outlet property="descLabel" destination="uVt-9J-Yb9" id="Jtr-1e-4sA"/>

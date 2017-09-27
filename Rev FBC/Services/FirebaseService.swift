@@ -68,69 +68,83 @@ class FirebaseService {
         let deletingEvents = events.filter({ e in !ids.contains(e.id) })
         deletingEvents.forEach({ e in e.delete() })
     }
-
+    
     func getUpcomingEvents() -> Promise<Bool> {
         let ref = Database.database().reference()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-d-yyyy h:mma"
         var idsToKeep : [String] = []
         
-            return Promise<Bool>(work: { fulfill, reject in
-                ref.child("upcomingEvents").observeSingleEvent(of: .value, with: { (snap) in
-                    guard let snapDicts = snap.value as? NSDictionary else {
-                        Event.getAll().forEach({ $0.delete() })
-                        return
+        return Promise<Bool>(work: { fulfill, reject in
+            ref.child("upcomingEvents").observeSingleEvent(of: .value, with: { (snap) in
+                print(snap)
+                guard let snapDicts = snap.value as? NSDictionary else {
+                    Event.getAll().forEach({ $0.delete() })
+                    return
+                }
+                
+                snapDicts.forEach({ snapDict in
+                    let eventDict = snapDict.value as! NSDictionary
+                    
+                    let tempEvent = Event()
+                    let key = snapDict.key as? String ?? ""
+                    tempEvent.name = eventDict["name"] as? String ?? "No name"
+                    tempEvent.desc = eventDict["desc"] as? String ?? "No description"
+                    tempEvent.urlString = eventDict["website"] as? String ?? ""
+                    tempEvent.signUpUrl = eventDict["signUpUrl"] as? String ?? ""
+                    tempEvent.address = eventDict["address"] as? String ?? ""
+                    tempEvent.locationName = eventDict["locationName"] as? String ?? ""
+                    tempEvent.isSpecial = eventDict["isSpecial"] as? Bool ?? false
+                    let endDateStr = eventDict["endDate"] as? String ?? ""
+                    let startDateStr = eventDict["startDate"] as? String ?? ""
+                    tempEvent.endDate = dateFormatter.date(from: endDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
+                    tempEvent.startDate = dateFormatter.date(from: startDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
+                    
+                    if let date = dateFormatter.date(from: startDateStr) {
+                        if date > Date() + 2.hours {
+                            idsToKeep.append(key)
+                        }
                     }
                     
-                    snapDicts.forEach({ snapDict in
-                        let eventDict = snapDict.value as! NSDictionary
-                        if
-                            let key = snapDict.key as? String,
-                            let name = eventDict["name"] as? String,
-                            let desc = eventDict["desc"] as? String,
-                            let website = eventDict["website"] as? String,
-                            let address = eventDict["address"] as? String,
-                            let isSpecial = eventDict["isSpecial"] as? Bool,
-                            let dateStr = eventDict["startDate"] as? String {
-                            
-                            if let date = dateFormatter.date(from: dateStr) {
-                                if date > Date() + 2.hours {
-                                    idsToKeep.append(key)
-                                }
-                            }
-                            
-                            /// If we already have this event saved then update the event
-                            var e = Event.getAll().filter({ $0.id == key }).first
-                            if e != nil {
-                                e?.update {
-                                    e?.name = name
-                                    e?.desc = desc
-                                    e?.address = address
-                                    e?.urlString = website
-                                    e?.isSpecial = isSpecial
-                                    e?.startDate = dateFormatter.date(from: dateStr)!
-                                }
-                            } else {
-                                /// Else create a new event and save it
-                                var event = Event()
-                                event.id = key
-                                event.name = name
-                                event.desc = desc
-                                event.urlString = website
-                                event.address = address
-                                event.isSpecial = isSpecial
-                                event.startDate = dateFormatter.date(from: dateStr)!
-                                event.save()
-                                
-                            }
-                        } else {
-                            fulfill(false)
-                        }
-                    })
+                    self.handleResponse(event: tempEvent, key: key ?? "")
                     self.deleteOldEvents(ids: idsToKeep)
                     fulfill(true)
+                })
             })
         })
+        
+    }
+    
+    func handleResponse(event: Event, key: String) {
+        /// If we already have this event saved then update the event
+        var e = Event.getAll().filter({ $0.id == key }).first
+        if e != nil {
+            e?.update {
+                e?.name = event.name
+                e?.desc = event.desc
+                e?.address = event.address
+                e?.signUpUrl = event.signUpUrl
+                e?.locationName = event.locationName
+                e?.urlString = event.urlString
+                e?.isSpecial = event.isSpecial
+                e?.startDate = event.startDate
+                e?.endDate = event.endDate
+            }
+        } else {
+            /// Else create a new event and save it
+            var newEvent = Event()
+            newEvent.id = key
+            newEvent.name = event.name
+            newEvent.desc = event.desc
+            newEvent.urlString = event.urlString
+            newEvent.signUpUrl = event.signUpUrl
+            newEvent.locationName = event.locationName
+            newEvent.address = event.address
+            newEvent.isSpecial = event.isSpecial
+            newEvent.startDate = event.startDate
+            newEvent.endDate = event.endDate
+            newEvent.save()
+        }
     }
     
     func observeEventChanges(completion: @escaping () -> ()) {
@@ -147,58 +161,33 @@ class FirebaseService {
             }
             print("SNAPS: ",snapDicts)
             snapDicts.forEach({ snapDict in
-                
-                
-                
                 let eventDict = snapDict.value as! NSDictionary
-                if
-                    let key = snapDict.key as? String,
-                    let name = eventDict["name"] as? String,
-                    let desc = eventDict["desc"] as? String,
-                    let address = eventDict["address"] as? String,
-                    let website = eventDict["website"] as? String,
-                    let isSpecial = eventDict["isSpecial"] as? Bool,
-                    let dateStr = eventDict["startDate"] as? String {
-                    
-
-                    if let date = dateFormatter.date(from: dateStr) {
-                        if date > Date() + 2.hours {
-                            idsToKeep.append(key)
-                        }
+                
+                let tempEvent = Event()
+                let key = snapDict.key as? String ?? ""
+                tempEvent.name = eventDict["name"] as? String ?? "No name"
+                tempEvent.desc = eventDict["desc"] as? String ?? "No description"
+                tempEvent.urlString = eventDict["website"] as? String ?? ""
+                tempEvent.signUpUrl = eventDict["signUpUrl"] as? String ?? ""
+                tempEvent.address = eventDict["address"] as? String ?? ""
+                tempEvent.locationName = eventDict["locationName"] as? String ?? ""
+                tempEvent.isSpecial = eventDict["isSpecial"] as? Bool ?? false
+                let endDateStr = eventDict["endDate"] as? String ?? ""
+                let startDateStr = eventDict["startDate"] as? String ?? ""
+                tempEvent.endDate = dateFormatter.date(from: endDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
+                tempEvent.startDate = dateFormatter.date(from: startDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
+                
+                if let date = dateFormatter.date(from: startDateStr) {
+                    if date > Date() + 2.hours {
+                        idsToKeep.append(key)
                     }
-                    
-                    /// If we already have this event saved then update the event
-                    var e = Event.getAll().filter({ $0.id == key }).first
-                    if e != nil {
-                        e?.update {
-                            e?.name = name
-                            e?.desc = desc
-                            e?.address = address
-                            e?.isSpecial = isSpecial
-                            e?.urlString = website
-                            e?.startDate = dateFormatter.date(from: dateStr)!
-                            
-                        }
-                    } else {
-                        /// Else create a new event and save it
-                        var event = Event()
-                        event.id = key
-                        event.name = name
-                        event.desc = desc
-                        event.isSpecial = isSpecial
-                        event.urlString = website
-                        event.address = address
-                        event.startDate = dateFormatter.date(from: dateStr)!
-                        event.save()
-                        
-                    }
-                } else {
                 }
+                
+                self.handleResponse(event: tempEvent, key: key ?? "")
+                self.deleteOldEvents(ids: idsToKeep)
+                idsToKeep.removeAll()
+                completion()
             })
-            
-            self.deleteOldEvents(ids: idsToKeep)
-            idsToKeep.removeAll()
-            completion()
         })
     }
     
@@ -207,14 +196,17 @@ class FirebaseService {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "MM-d-yyyy h:mma"
-
+        
         let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
-                                        "address":event.address as NSString,
-                                        "desc":event.desc as NSString,
-                                        "website":event.urlString as NSString,
-                                        "isSpecial":event.isSpecial as Bool,
-                                        "startDate":dateFormatter.string(from: event.startDate) as NSString
-                                        ]
+                                                  "address":event.address as NSString,
+                                                  "locationName":event.locationName as NSString,
+                                                  "signUpUrl":event.signUpUrl as NSString,
+                                                  "desc":event.desc as NSString,
+                                                  "website":event.urlString as NSString,
+                                                  "isSpecial":event.isSpecial as Bool,
+                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString,
+                                                  "endDate":dateFormatter.string(from: event.endDate) as NSString,
+                                                  ]
         let key = ref.child("upcomingEvents").childByAutoId().key as NSString
         
         ref.child("upcomingEvents/\(key)").setValue(eventDict)
@@ -236,12 +228,16 @@ class FirebaseService {
         
         let eventDict : Dictionary<String,Any> = ["name":event.name as NSString,
                                                   "address":event.address as NSString,
+                                                  "locationName":event.locationName as NSString,
+                                                  "signUpUrl":event.signUpUrl as NSString,
                                                   "website":event.urlString as NSString,
                                                   "desc":event.desc as NSString,
                                                   "isSpecial":event.isSpecial as Bool,
-                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString
+                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString,
+                                                  "endDate":dateFormatter.string(from: event.endDate) as NSString
         ]
         
         ref.child("upcomingEvents/\(event.id)").setValue(eventDict)
     }
 }
+

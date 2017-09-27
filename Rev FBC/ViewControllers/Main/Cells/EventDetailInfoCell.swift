@@ -20,4 +20,6 @@ class EventDetailInfoCell: UITableViewCell {
     
     @IBOutlet weak var actionBtn: UIButton!
     
+    @IBOutlet weak var bottonContraint: NSLayoutConstraint!
+
 }
