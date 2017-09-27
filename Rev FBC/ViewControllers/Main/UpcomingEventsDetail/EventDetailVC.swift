@@ -55,9 +55,12 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
 
     }
     
+    var id : String?
+    
     var event : Event? {
         didSet {
             guard let e = event else { return }
+            id = e.id
             updateUI(event: e)
         }
     }
@@ -76,19 +79,32 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.reloadData()
         
+        delegateID = EventObserver.instance.delegates.count
+        EventObserver.instance.delegates.append(self)
+        
+        table.reloadData()
         viewModel = EventDetailVM(event: event)
         navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
-        
-        
-        
-//        delegateID = EventObserver.instance.delegates.count
-//        EventObserver.instance.delegates.append(self)
+    }
+    
+    deinit {
+        guard let id = delegateID else { return }
+        EventObserver.instance.removeDelegate(id: id)
     }
     
     func update() {
-//        table.reloadData()
+        guard let id = id,
+            let e = Event.getAll().filter({$0.id == id}).first
+        else { return }
+        if e.isInvalidated { return }
+        self.event = e
+        updateUI(event: e)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = .white
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

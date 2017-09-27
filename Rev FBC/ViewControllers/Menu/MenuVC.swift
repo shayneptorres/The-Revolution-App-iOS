@@ -63,6 +63,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // When the view disappeares, remove the tap gesture recognizer from the Parent
         guard
             let upcomingVC = parent as? UpcomingEventsVC
             else { return }
@@ -73,6 +74,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Handles the ui based on if the user is logged in as admin
         if AdminService.instance.getUserCredentials() == nil {
             adminMenuMode = .userUnauthenticated
         } else {
