@@ -75,6 +75,8 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
         tv.reloadData()
     }
     
+    @IBOutlet weak var editBtn: UIBarButtonItem!
+    
     var delegateID : Int?
 
     override func viewDidLoad() {
@@ -86,6 +88,23 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
         table.reloadData()
         viewModel = EventDetailVM(event: event)
         navigationController?.navigationBar.tintColor = UIColor(netHex: 0xF0C930)
+        
+        if AdminService.instance.getUserCredentials() == nil {
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            if navigationItem.rightBarButtonItem != nil { return }
+            let btn = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(segueToEdit))
+            
+            btn.tintColor = UIColor(netHex: 0xF0C930)
+            editBtn = btn
+            
+            navigationItem.rightBarButtonItem = btn
+            
+        }
+    }
+    
+    func segueToEdit(){
+        performSegue(withIdentifier: "EditEvent", sender: self)
     }
     
     deinit {

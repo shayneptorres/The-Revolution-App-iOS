@@ -67,7 +67,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard
             let upcomingVC = parent as? UpcomingEventsVC
             else { return }
-        upcomingVC.view.removeGestureRecognizer(tap)
+        upcomingVC.tableView.removeGestureRecognizer(tap)
         
     }
     
@@ -93,7 +93,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // Do any additional setup after loading the view.
         tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        upcomingVC.view.addGestureRecognizer(tap)
+        upcomingVC.tableView.addGestureRecognizer(tap)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

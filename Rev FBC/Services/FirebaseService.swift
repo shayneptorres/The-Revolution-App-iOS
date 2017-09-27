@@ -78,6 +78,7 @@ class FirebaseService {
         return Promise<Bool>(work: { fulfill, reject in
             ref.child("upcomingEvents").observeSingleEvent(of: .value, with: { (snap) in
                 print(snap)
+                
                 guard let snapDicts = snap.value as? NSDictionary else {
                     Event.getAll().forEach({ $0.delete() })
                     return
@@ -107,9 +108,10 @@ class FirebaseService {
                     }
                     
                     self.handleResponse(event: tempEvent, key: key ?? "")
-                    self.deleteOldEvents(ids: idsToKeep)
-                    fulfill(true)
                 })
+                self.deleteOldEvents(ids: idsToKeep)
+                idsToKeep.removeAll()
+                fulfill(true)
             })
         })
         
@@ -160,6 +162,10 @@ class FirebaseService {
                 return
             }
             print("SNAPS: ",snapDicts)
+            
+            print(snapDicts)
+            print("")
+            
             snapDicts.forEach({ snapDict in
                 let eventDict = snapDict.value as! NSDictionary
                 
@@ -184,10 +190,11 @@ class FirebaseService {
                 }
                 
                 self.handleResponse(event: tempEvent, key: key ?? "")
-                self.deleteOldEvents(ids: idsToKeep)
-                idsToKeep.removeAll()
-                completion()
+                
             })
+            self.deleteOldEvents(ids: idsToKeep)
+            idsToKeep.removeAll()
+            completion()
         })
     }
     

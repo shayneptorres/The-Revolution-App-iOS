@@ -570,6 +570,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editBtn" destination="vJj-08-kyX" id="fc9-44-buW"/>
                         <outlet property="table" destination="92y-EL-90T" id="uGo-TH-oOs"/>
                     </connections>
                 </viewController>

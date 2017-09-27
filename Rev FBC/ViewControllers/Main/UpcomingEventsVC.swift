@@ -136,10 +136,16 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let specialEvents = events.filter({ $0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        
         let regEvents = events.filter({ !$0.isSpecial }).sorted(by: { $0.startDate < $1.startDate })
+        
+        
+        
         if section == 0 {
             return specialEvents.count
         } else {
+            print(regEvents)
+            print(regEvents.count)
             return regEvents.count
         }
     }

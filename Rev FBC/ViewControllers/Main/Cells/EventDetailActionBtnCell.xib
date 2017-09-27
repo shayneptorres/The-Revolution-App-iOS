@@ -29,6 +29,7 @@
                         </state>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hVS-qx-Kh6" secondAttribute="bottom" constant="8" id="TTL-xZ-3lz"/>
                     <constraint firstItem="hVS-qx-Kh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jv1-b6-cnK"/>
