@@ -19,6 +19,11 @@ struct EventDetailVM : WebSiteManager, LocationManager {
         showWebSite(url: event.url())
     }
     
+    func signUpBtnWasTapped() {
+        guard let event = event else { return }
+        showWebSite(url: event.getSignUpURL())
+    }
+    
     func directionsBtnWasTapped() {
         guard let event = event else { return }
         directions(event: event)
@@ -99,7 +104,6 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
             editBtn = btn
             
             navigationItem.rightBarButtonItem = btn
-            
         }
     }
     
@@ -154,14 +158,6 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             return 1
         }
-//
-//        if AdminService.instance.getUserCredentials() == nil {
-//            // If user is not a logged in admin
-//            return 5
-//        } else {
-//            // If user is a logged in admin
-//            return 5
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,6 +177,7 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
                                                                  tableViewWidth: tableWidth,
                                                                  contentSpacing: 16)
                 
+                mapCell.findLocation(event: event, onMap: mapCell.map)
                 cell = mapCell
                 
             case 1: // Title cell for event
@@ -199,7 +196,14 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
                 let endDateformatter = DateFormatter()
                 endDateformatter.dateFormat = "h:mm a"
                 
-                infoCell.descLabel.text = "\(startDateformatter.string(from: event.startDate)) to \(endDateformatter.string(from: event.endDate))"
+                
+                
+                if event.startDate.isInSameDayOf(date: event.endDate) {
+                    infoCell.descLabel.text = "\(startDateformatter.string(from: event.startDate)) to \(endDateformatter.string(from: event.endDate))"
+                } else {
+                    infoCell.descLabel.text = "\(startDateformatter.string(from: event.startDate)) to\n\(startDateformatter.string(from: event.endDate))"
+                }
+                
                 infoCell.actionBtn.isHidden = true
                 infoCell.selectionStyle = .none
                 cell = infoCell
@@ -254,6 +258,10 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
             case 0: // Normally the sign up action btn
                 let actionCell = tableView.dequeueReusableCell(withIdentifier: CellID.eventActionBtn.rawValue) as! EventDetailActionBtnCell
                 actionCell.setUpBtnUI(type: .signUp)
+                actionCell.actionBtn.rx.tap.subscribe(onNext: {
+                    vm.signUpBtnWasTapped()
+                }).addDisposableTo(disposeBag)
+                
                 cell = actionCell
             default:
                 return UITableViewCell()
@@ -266,5 +274,4 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layoutSubviews()
     }
-    
 }

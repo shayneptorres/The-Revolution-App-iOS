@@ -22,11 +22,28 @@ class AddEventVC: FormViewController {
     deinit {
         event = nil
     }
+    
+    let disposebag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpForm()
         
+        if AdminService.instance.getUserCredentials() != nil && event != nil {
+            let btn = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.delete(_:)))
+            btn.tintColor = UIColor.red
+            navigationItem.rightBarButtonItem = btn
+            btn.rx.tap.subscribe(onNext: {
+                print("Will delete")
+                self.navigationController?.popToRootViewController(animated: true)
+                guard let eventToDelete = self.event else { return }
+                FirebaseService.instance.deleteEvent(event: eventToDelete)
+            }).addDisposableTo(disposebag)
+        }
+    }
+    
+    func delete(){
+        print("Will delete")
     }
     
     func setUpForm(){
@@ -41,11 +58,13 @@ class AddEventVC: FormViewController {
                 row.title = "Website:"
                 row.tag = "website"
                 row.value = event?.urlString
+                row.cell.textField.autocapitalizationType = .none
             }
             <<< TextRow() { row in
                 row.title = "Sign up url:"
                 row.tag = "signUp"
                 row.value = event?.signUpUrl
+                row.cell.textField.autocapitalizationType = .none
             }
             <<< TextAreaRow() { row in
                 row.placeholder = "Info:"
@@ -72,14 +91,19 @@ class AddEventVC: FormViewController {
             
             +++ Section("When")
             <<< DateRow() { row in
-                row.title = "Date:"
-                row.tag = "date"
+                row.title = "Start Date:"
+                row.tag = "startDate"
                 row.value = event?.startDate
             }
             <<< TimeRow() { row in
                 row.title = "Starts:"
                 row.tag = "startTime"
                 row.value = event?.startDate
+            }
+            <<< DateRow() { row in
+                row.title = "End Date:"
+                row.tag = "endDate"
+                row.value = event?.endDate
             }
             <<< TimeRow() { row in
                 row.title = "Ends:"
@@ -100,7 +124,8 @@ class AddEventVC: FormViewController {
                         let specialRow = self.form.rowBy(tag: "special") as? SwitchRow,
                         let locationNameRow = self.form.rowBy(tag: "locationName") as? TextRow,
                         let addressRow = self.form.rowBy(tag: "address") as? TextAreaRow,
-                        let dateRow = self.form.rowBy(tag: "date") as? DateRow,
+                        let startDateRow = self.form.rowBy(tag: "startDate") as? DateRow,
+                        let endDateRow = self.form.rowBy(tag: "endDate") as? DateRow,
                         let startRow = self.form.rowBy(tag: "startTime") as? TimeRow,
                         let endRow = self.form.rowBy(tag: "endTime") as? TimeRow
                         else { return }
@@ -111,16 +136,17 @@ class AddEventVC: FormViewController {
                     let signUp = signUpRow.value ?? ""
                     let locationName = locationNameRow.value ?? ""
                     let address = addressRow.value ?? ""
-                    let date = dateRow.value ?? Date()
+                    let startDate = startDateRow.value ?? Date()
                     let startTime = startRow.value ?? Date()
+                    let endDate = endDateRow.value ?? Date()
                     let endTime = endRow.value ?? Date()
                     let special = specialRow.value ?? false
                     
-                    var startDate = date.startOfDay
-                    startDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
+                    var eventStartDate = startDate.startOfDay
+                    eventStartDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
                     
-                    var endDate = date.startOfDay
-                    endDate = endDate + Int(endTime.hour).hours + Int(endTime.minute).minutes
+                    var eventEndDate = endDate.startOfDay
+                    eventEndDate = endDate + Int(endTime.hour).hours + Int(endTime.minute).minutes
                     
                     let event = Event()
                     event.name = name
@@ -130,8 +156,8 @@ class AddEventVC: FormViewController {
                     event.desc = info
                     event.locationName = locationName
                     event.address = address
-                    event.startDate = startDate
-                    event.endDate = endDate
+                    event.startDate = eventStartDate
+                    event.endDate = eventEndDate
                     
                     if self.event != nil {
                         event.id = (self.event?.id)!

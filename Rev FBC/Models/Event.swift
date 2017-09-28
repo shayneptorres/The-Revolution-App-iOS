@@ -36,10 +36,15 @@ class Event : Object, RealmManagable, URLConverter {
 
 protocol URLConverter {
     var urlString : String { get set }
+    var signUpUrl : String { get set }
 }
 
 extension URLConverter {
     func url() -> URL? {
         return URL(string: urlString)
+    }
+    
+    func getSignUpURL() -> URL? {
+        return URL(string: signUpUrl)
     }
 }
