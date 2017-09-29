@@ -17,6 +17,7 @@
 		B8260F991F398A4400175CEA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8260F981F398A4400175CEA /* Colors.swift */; };
 		B8260F9B1F398CAB00175CEA /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8260F9A1F398CAB00175CEA /* UIView.swift */; };
 		B82F4C1D1F37A69A0014D322 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82F4C1C1F37A69A0014D322 /* Menu.storyboard */; };
+		B8342E211F7CD200009D7C59 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8342E201F7CD200009D7C59 /* NotificationService.swift */; };
 		B8436B9A1F4E5956005E0275 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8436B991F4E5956005E0275 /* Admin.storyboard */; };
 		B8436B9C1F4E5976005E0275 /* AdminLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */; };
 		B848F2581F70925500C001BE /* EventDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B848F2561F70925500C001BE /* EventDetailTitleCell.swift */; };
@@ -105,6 +106,7 @@
 		B8260F9A1F398CAB00175CEA /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B82F4C1C1F37A69A0014D322 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		B82F4C1F1F37ABAC0014D322 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		B8342E201F7CD200009D7C59 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B8436B991F4E5956005E0275 /* Admin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
 		B8436B9B1F4E5976005E0275 /* AdminLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminLoginVC.swift; sourceTree = "<group>"; };
 		B848F2561F70925500C001BE /* EventDetailTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTitleCell.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				B889F7091F4176F2006DB561 /* FirebaseService.swift */,
 				B8CE1AAE1F46CACB0044F32A /* EventObserver.swift */,
 				B8CADAA61F57E08A006C626B /* AdminService.swift */,
+				B8342E201F7CD200009D7C59 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				B8436B9C1F4E5976005E0275 /* AdminLoginVC.swift in Sources */,
 				B887CC531F42825A009EECAD /* UpcomingEventDetailVC.swift in Sources */,
 				B8260F991F398A4400175CEA /* Colors.swift in Sources */,
+				B8342E211F7CD200009D7C59 /* NotificationService.swift in Sources */,
 				B85D99161F3D8CA8005A6A23 /* LocationActionCell.swift in Sources */,
 				B8EF1BDC1F3843EE0071BC20 /* AppButton.swift in Sources */,
 				B825090A1F70F724003814FB /* EventDetailMapCell.swift in Sources */,

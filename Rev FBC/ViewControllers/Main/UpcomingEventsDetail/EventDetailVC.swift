@@ -130,6 +130,13 @@ class EventDetailVC: UIViewController, LocationManager, EventObserverDelegate {
         navigationController?.navigationBar.barTintColor = .white
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if event?.signUpUrl != "" {
+            self.table.scrollToRow(at: IndexPath.init(row: 0, section: 1), at: .bottom, animated: true)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEvent" {
             let addEventVC = segue.destination as! AddEventVC
@@ -235,7 +242,7 @@ extension EventDetailVC : UITableViewDelegate, UITableViewDataSource {
                         vm.directionsBtnWasTapped()
                     }).addDisposableTo(disposeBag)
                 
-                infoCell.bottonContraint.constant = 50
+                infoCell.bottonContraint.constant = 40
                 
                 UIView.animate(withDuration: 0.1, animations: {
                     infoCell.layoutIfNeeded()

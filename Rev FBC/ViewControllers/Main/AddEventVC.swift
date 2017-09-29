@@ -94,22 +94,30 @@ class AddEventVC: FormViewController {
                 row.title = "Start Date:"
                 row.tag = "startDate"
                 row.value = event?.startDate
-            }
+                }.onCellSelection({cell,row in
+                    row.value = Date()
+                })
             <<< TimeRow() { row in
                 row.title = "Starts:"
                 row.tag = "startTime"
                 row.value = event?.startDate
-            }
+                }.onCellSelection({cell,row in
+                    row.value = Date()
+                })
             <<< DateRow() { row in
                 row.title = "End Date:"
                 row.tag = "endDate"
                 row.value = event?.endDate
-            }
+                }.onCellSelection({cell,row in
+                    row.value = Date()
+                })
             <<< TimeRow() { row in
                 row.title = "Ends:"
                 row.tag = "endTime"
                 row.value = event?.endDate
-            }
+                }.onCellSelection({cell,row in
+                    row.value = Date()
+                })
             
             +++ Section("")
             <<< ButtonRow() { row in
@@ -142,11 +150,11 @@ class AddEventVC: FormViewController {
                     let endTime = endRow.value ?? Date()
                     let special = specialRow.value ?? false
                     
-                    var eventStartDate = startDate.startOfDay
-                    eventStartDate = startDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
+                    var eventStartDate = startDate.startOfDay - 7.hours
+                    eventStartDate = eventStartDate + Int(startTime.hour).hours + Int(startTime.minute).minutes
                     
-                    var eventEndDate = endDate.startOfDay
-                    eventEndDate = endDate + Int(endTime.hour).hours + Int(endTime.minute).minutes
+                    var eventEndDate = endDate.startOfDay - 7.hours
+                    eventEndDate = eventEndDate + Int(endTime.hour).hours + Int(endTime.minute).minutes
                     
                     let event = Event()
                     event.name = name
@@ -158,6 +166,8 @@ class AddEventVC: FormViewController {
                     event.address = address
                     event.startDate = eventStartDate
                     event.endDate = eventEndDate
+                    
+                    
                     
                     if self.event != nil {
                         event.id = (self.event?.id)!

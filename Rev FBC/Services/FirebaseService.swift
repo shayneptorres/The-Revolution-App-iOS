@@ -66,7 +66,10 @@ class FirebaseService {
     private func deleteOldEvents(ids: [String]){
         let events = Event.getAll()
         let deletingEvents = events.filter({ e in !ids.contains(e.id) })
-        deletingEvents.forEach({ e in e.delete() })
+        deletingEvents.forEach({ e in
+            NotificationService.instance.removeNotification(forEvent: e)
+            e.delete()
+        })
     }
     
     func getUpcomingEvents() -> Promise<Bool> {
@@ -183,8 +186,8 @@ class FirebaseService {
                 tempEvent.endDate = dateFormatter.date(from: endDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
                 tempEvent.startDate = dateFormatter.date(from: startDateStr) ?? dateFormatter.date(from: "01-1-2001 1:00AM")!
                 
-                if let date = dateFormatter.date(from: startDateStr) {
-                    if date > Date() + 2.hours {
+                if let date = dateFormatter.date(from: endDateStr) {
+                    if date > Date() + 30.minutes {
                         idsToKeep.append(key)
                     }
                 }
@@ -193,6 +196,7 @@ class FirebaseService {
                 
             })
             self.deleteOldEvents(ids: idsToKeep)
+            // create the notifications for all the events
             idsToKeep.removeAll()
             completion()
         })
@@ -211,9 +215,10 @@ class FirebaseService {
                                                   "desc":event.desc as NSString,
                                                   "website":event.urlString as NSString,
                                                   "isSpecial":event.isSpecial as Bool,
-                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString,
-                                                  "endDate":dateFormatter.string(from: event.endDate) as NSString,
+                                                  "startDate":dateFormatter.string(from: event.startDate + 7.hours) as NSString, // add the seven hours to get the right time in our time zone
+                                                  "endDate":dateFormatter.string(from: event.endDate + 7.hours ) as NSString, // add the seven hours to get the right time in our time zone
                                                   ]
+        
         let key = ref.child("upcomingEvents").childByAutoId().key as NSString
         
         ref.child("upcomingEvents/\(key)").setValue(eventDict)
@@ -240,8 +245,9 @@ class FirebaseService {
                                                   "website":event.urlString as NSString,
                                                   "desc":event.desc as NSString,
                                                   "isSpecial":event.isSpecial as Bool,
-                                                  "startDate":dateFormatter.string(from: event.startDate) as NSString,
-                                                  "endDate":dateFormatter.string(from: event.endDate) as NSString
+                                                  "startDate":dateFormatter.string(from: event.startDate + 7.hours) as NSString,// add the seven hours to get the right time in our time zone
+                                                  "endDate":dateFormatter.string(from: event.endDate
+                                                    + 7.hours) as NSString // add the seven hours to get the right time in our time zone
         ]
         
         ref.child("upcomingEvents/\(event.id)").setValue(eventDict)

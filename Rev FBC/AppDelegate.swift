@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import NotificationCenter
+import UserNotificationsUI
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Instantiate the RealmMigrationManager singleton in order to execute any needed migrations
         _ = RealmMigrationManager()
         
+        // Ask permission for Local notififcations
+        NotificationService.instance.requestPermission()
+        UNUserNotificationCenter.current().delegate = self
         
         FirebaseApp.configure()
         UITabBar.appearance().tintColor = UIColor(netHex: 0xF0C930)
@@ -50,6 +56,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
 
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    }
 }
 

@@ -110,6 +110,7 @@ class UpcomingEventsVC: SlideableMenuVC {
 extension UpcomingEventsVC : EventObserverDelegate {
     func update() {
         self.events = Event.getAll().sorted(by: { $0.startDate < $1.startDate })
+        Event.getAll().forEach({ event in NotificationService.instance.checkNotifications(forEvent: event) })
         self.tableView.reloadData()
     }
 }
@@ -144,8 +145,6 @@ extension UpcomingEventsVC : UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return specialEvents.count
         } else {
-            print(regEvents)
-            print(regEvents.count)
             return regEvents.count
         }
     }
