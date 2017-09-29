@@ -88,6 +88,11 @@ class UpcomingEventsVC: SlideableMenuVC {
             }
         })
         
+        NotificationService.instance.center.getPendingNotificationRequests { notifications in
+            print("NOTIFICATIONS:")
+            print(notifications)
+        }
+        
     }
     
     deinit {

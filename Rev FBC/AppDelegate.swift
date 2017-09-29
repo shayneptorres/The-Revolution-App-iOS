@@ -64,8 +64,5 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         completionHandler([.alert, .sound])
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    }
 }
 
